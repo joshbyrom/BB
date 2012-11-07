@@ -62,6 +62,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cgdi.cpp" />
+    <ClCompile Include="iniFileLoaderBase.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ParamLoader.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="WindowUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C2DMatrix.h" />
+    <ClInclude Include="Cgdi.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="iniFileLoaderBase.h" />
+    <ClInclude Include="ParamLoader.h" />
+    <ClInclude Include="PrecisionTimer.h" />
+    <ClInclude Include="Transformations.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="WindowUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
