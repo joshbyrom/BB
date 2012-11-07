@@ -5,7 +5,7 @@
 #include <math.h>
 #include "../../headers/constants.h"
 
-namespace Messaging {
+namespace GameMessaging {
 	template<typename MESSAGE, typename T>
 	class Message {
 		public:

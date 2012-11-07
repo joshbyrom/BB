@@ -2,22 +2,25 @@
 #define MESSAGE_DISPATCHER_HPP
 
 #include <set>
+#include <time.h>
+
 #include "Message.hpp"
+#include "MessageTypes.h"
 #include "Messageable.hpp"
 
-namespace Messaging {
+namespace GameMessaging {
 	template<typename T>
 	class MessageDispatcher {
 	public:
 		MessageDispatcher();
 		~MessageDispatcher();
 
-		void SendMessage(const Message<unsigned int, T> message);
+		void SendMessageToReceiver(const Message<MessageType, T>& message);
 		void ProcessMessages();
 	private:
 		std::set<Message<unsigned int, T>> que;
 
-		void HandleMessage(Messageable<T> * receiver, const Message<unsigned int, T> msg);
+		void HandleMessage(Messageable<T> * receiver, const Message<unsigned int, T>& msg);
 	};
 
 	template<typename T>
@@ -32,13 +35,17 @@ namespace Messaging {
 
 	template<typename T>
 	void MessageDispatcher<T>::HandleMessage(Messageable<T> * receiver, 
-											 const Message<unsigned int, T> msg) {
+											 const Message<unsigned int, T>& msg) {
 		bool handled = receiver->ReceiveMessage(msg);
 	}
 
 	template<typename T>
-	void MessageDispatcher<T>::SendMessage(const Message<unsigned int, T> message) {
+	void MessageDispatcher<T>::SendMessageToReceiver(const Message<MessageType, T>& message) {
 		T receiver = message.GetReceiver();
+
+		if(message.GetAge() > message.GetDispatchTime()) {
+
+		}
 	}
 }
 #endif

@@ -80,7 +80,7 @@
     <ClInclude Include="game\messaging\Message.hpp" />
     <ClInclude Include="game\messaging\Messageable.hpp" />
     <ClInclude Include="game\messaging\MessageDispatcher.hpp" />
-    <ClInclude Include="headers\MessageTypes.h" />
+    <ClInclude Include="game\messaging\MessageTypes.h" />
     <ClInclude Include="headers\ParamLoader.h" />
     <ClInclude Include="headers\PrecisionTimer.h" />
     <ClInclude Include="headers\resource.h" />

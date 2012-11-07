@@ -3,11 +3,11 @@
 
 #include "Message.hpp"
 
-namespace Messaging {
+namespace GameMessaging {
 	template<typename T>
 	class Messageable {
 	public:
-		virtual bool ReceiveMessage(Message<unsigned int, T> message) = 0;
+		virtual bool ReceiveMessage(const Message<unsigned int, T>& message) = 0;
 	private:
 	};
 }

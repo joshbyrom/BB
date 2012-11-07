@@ -2,7 +2,7 @@
 #include "../messaging/MessageDispatcher.hpp"
 
 namespace AI {
-	class StaticEntity : Messaging::Messageable<StaticEntity> {
+	class StaticEntity : GameMessaging::Messageable<StaticEntity> {
 
 	};
 }

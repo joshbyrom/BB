@@ -68,9 +68,6 @@
     <ClInclude Include="headers\iniFileLoaderBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\MessageTypes.h">
-      <Filter>Block Buster Code\Messaging</Filter>
-    </ClInclude>
     <ClInclude Include="headers\ParamLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -115,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="headers\resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\messaging\MessageTypes.h">
+      <Filter>Block Buster Code\Messaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
