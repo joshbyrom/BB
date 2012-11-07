@@ -3,13 +3,13 @@
 #include <windows.h>
 #include <time.h>
 
-#include "constants.h"
-#include "utils.h"
-#include "PrecisionTimer.h"
-#include "Cgdi.h"
-#include "ParamLoader.h"
-#include "resource.h"
-#include "WindowUtils.h"
+#include "headers/constants.h"
+#include "headers/utils.h"
+#include "headers/PrecisionTimer.h"
+#include "headers/Cgdi.h"
+#include "headers/ParamLoader.h"
+#include "headers/resource.h"
+#include "headers/WindowUtils.h"
 
 //--------------------------------- Globals ------------------------------
 //

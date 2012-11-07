@@ -62,38 +62,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cgdi.cpp" />
-    <ClCompile Include="iniFileLoaderBase.cpp" />
+    <ClCompile Include="source\Cgdi.cpp" />
+    <ClCompile Include="source\iniFileLoaderBase.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ParamLoader.cpp" />
-    <ClCompile Include="PrecisionTimer.cpp" />
-    <ClCompile Include="Vector2D.cpp" />
-    <ClCompile Include="WindowUtils.cpp" />
+    <ClCompile Include="source\ParamLoader.cpp" />
+    <ClCompile Include="source\PrecisionTimer.cpp" />
+    <ClCompile Include="source\Vector2D.cpp" />
+    <ClCompile Include="source\WindowUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C2DMatrix.h" />
-    <ClInclude Include="Cgdi.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="geometry.h" />
-    <ClInclude Include="Grid.hpp" />
-    <ClInclude Include="iniFileLoaderBase.h" />
-    <ClInclude Include="Message.hpp" />
-    <ClInclude Include="Messageable.hpp" />
-    <ClInclude Include="MessageDispatcher.hpp" />
-    <ClInclude Include="MessageTypes.h" />
-    <ClInclude Include="ParamLoader.h" />
-    <ClInclude Include="PrecisionTimer.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="StaticEntity.hpp" />
-    <ClInclude Include="Stream_Utility_Functions.h" />
-    <ClInclude Include="Transformations.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="Vector2D.h" />
-    <ClInclude Include="WindowUtils.h" />
-    <ClInclude Include="World.hpp" />
+    <ClInclude Include="headers\C2DMatrix.h" />
+    <ClInclude Include="headers\Cgdi.h" />
+    <ClInclude Include="headers\constants.h" />
+    <ClInclude Include="headers\geometry.h" />
+    <ClInclude Include="game\space\Grid.hpp" />
+    <ClInclude Include="headers\iniFileLoaderBase.h" />
+    <ClInclude Include="game\messaging\Message.hpp" />
+    <ClInclude Include="game\messaging\Messageable.hpp" />
+    <ClInclude Include="game\messaging\MessageDispatcher.hpp" />
+    <ClInclude Include="headers\MessageTypes.h" />
+    <ClInclude Include="headers\ParamLoader.h" />
+    <ClInclude Include="headers\PrecisionTimer.h" />
+    <ClInclude Include="headers\resource.h" />
+    <ClInclude Include="game\entities\StaticEntity.hpp" />
+    <ClInclude Include="headers\Stream_Utility_Functions.h" />
+    <ClInclude Include="headers\Transformations.h" />
+    <ClInclude Include="headers\utils.h" />
+    <ClInclude Include="headers\Vector2D.h" />
+    <ClInclude Include="headers\WindowUtils.h" />
+    <ClInclude Include="game\space\World.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Params.ini" />
+    <None Include="options\Params.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

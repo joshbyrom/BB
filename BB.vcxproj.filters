@@ -36,89 +36,89 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
+    <ClCompile Include="source\Cgdi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cgdi.cpp">
+    <ClCompile Include="source\ParamLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WindowUtils.cpp">
+    <ClCompile Include="source\iniFileLoaderBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParamLoader.cpp">
+    <ClCompile Include="source\PrecisionTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="iniFileLoaderBase.cpp">
+    <ClCompile Include="source\Vector2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PrecisionTimer.cpp">
+    <ClCompile Include="source\WindowUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="utils.h">
+    <ClInclude Include="headers\C2DMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PrecisionTimer.h">
+    <ClInclude Include="headers\Cgdi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.h">
+    <ClInclude Include="headers\geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="geometry.h">
+    <ClInclude Include="headers\iniFileLoaderBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cgdi.h">
+    <ClInclude Include="headers\MessageTypes.h">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\ParamLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParamLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iniFileLoaderBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C2DMatrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transformations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stream_Utility_Functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
+    <ClInclude Include="headers\constants.h">
       <Filter>Constants</Filter>
     </ClInclude>
-    <ClInclude Include="World.hpp">
-      <Filter>Block Buster Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Message.hpp">
-      <Filter>Block Buster Code\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageTypes.h">
-      <Filter>Block Buster Code\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.hpp">
+    <ClInclude Include="game\space\Grid.hpp">
       <Filter>Block Buster Code\Space</Filter>
     </ClInclude>
-    <ClInclude Include="Messageable.hpp">
+    <ClInclude Include="game\messaging\Message.hpp">
       <Filter>Block Buster Code\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="StaticEntity.hpp">
+    <ClInclude Include="game\messaging\Messageable.hpp">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="game\messaging\MessageDispatcher.hpp">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\PrecisionTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Transformations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Stream_Utility_Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\entities\StaticEntity.hpp">
       <Filter>Block Buster Code\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="MessageDispatcher.hpp">
-      <Filter>Block Buster Code\Messaging</Filter>
+    <ClInclude Include="headers\Vector2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\WindowUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\space\World.hpp">
+      <Filter>Block Buster Code</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\resource.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Params.ini">
+    <None Include="options\Params.ini">
       <Filter>Params</Filter>
     </None>
   </ItemGroup>
