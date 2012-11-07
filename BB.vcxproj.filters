@@ -19,6 +19,15 @@
     <Filter Include="Constants">
       <UniqueIdentifier>{e04c632e-6c3e-4e17-9b87-8dbd664c3e35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Block Buster Code">
+      <UniqueIdentifier>{bd756031-f10a-4c37-9a11-7859e7f33146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Block Buster Code\Messaging">
+      <UniqueIdentifier>{980ba84d-68a3-47bf-a9f3-371cc9ddc9b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Block Buster Code\Space">
+      <UniqueIdentifier>{d7360833-f927-46db-bccd-4ae89d2a4caa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -82,6 +91,24 @@
     </ClInclude>
     <ClInclude Include="constants.h">
       <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="World.hpp">
+      <Filter>Block Buster Code</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticEntity.hpp">
+      <Filter>Block Buster Code</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.hpp">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageTypes.h">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.hpp">
+      <Filter>Block Buster Code\Space</Filter>
+    </ClInclude>
+    <ClInclude Include="Messageable.hpp">
+      <Filter>Block Buster Code\Messaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
