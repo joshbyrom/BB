@@ -1,0 +1,20 @@
+Block Buster
+
+Description
+----------------
+
+A block busting game with a unique twist.
+
+
+Information
+----------------
+
+This repository contains some of the logic for the game Block Buster being developed over at http://code.google.com/p/blockbuster-daveottley/ by Dave Ottley. Until the engine is ready, I will be using Matt Buckland's simulation window and utility code from his AI book to test my code and logic.
+
+Ultimately we will be migrating away from his code base, but if you are interested in his work, you can check out his site here http://www.ai-junkie.com/
+
+
+Notes
+----------------
+
+This software uses a high performance timer that is not found on older CPU's! 
