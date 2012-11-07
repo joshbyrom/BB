@@ -20,7 +20,7 @@ namespace GameMessaging {
 	private:
 		std::set<Message<unsigned int, T>> que;
 
-		void HandleMessage(Messageable<T> * receiver, const Message<unsigned int, T>& msg);
+		void HandleMessage(Messageable<MessageType, T> * receiver, const Message<MessageType, T>& msg);
 	};
 
 	template<typename T>
@@ -34,8 +34,8 @@ namespace GameMessaging {
 	}
 
 	template<typename T>
-	void MessageDispatcher<T>::HandleMessage(Messageable<T> * receiver, 
-											 const Message<unsigned int, T>& msg) {
+	void MessageDispatcher<T>::HandleMessage(Messageable<MessageType, T> * receiver, 
+											 const Message<MessageType, T>& msg) {
 		bool handled = receiver->ReceiveMessage(msg);
 	}
 

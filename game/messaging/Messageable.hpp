@@ -4,10 +4,10 @@
 #include "Message.hpp"
 
 namespace GameMessaging {
-	template<typename T>
+	template<typename M, typename T>
 	class Messageable {
 	public:
-		virtual bool ReceiveMessage(const Message<unsigned int, T>& message) = 0;
+		virtual bool ReceiveMessage(const Message<M, T>& message) = 0;
 	private:
 	};
 }
