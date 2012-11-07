@@ -16,6 +16,9 @@
     <Filter Include="Params">
       <UniqueIdentifier>{a61126f6-86f0-4d3e-b847-5da294b53354}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{e04c632e-6c3e-4e17-9b87-8dbd664c3e35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,11 +39,11 @@
     <ClCompile Include="iniFileLoaderBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PrecisionTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,5 +74,19 @@
     <ClInclude Include="Transformations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Stream_Utility_Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Constants</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Params.ini">
+      <Filter>Params</Filter>
+    </None>
   </ItemGroup>
 </Project>

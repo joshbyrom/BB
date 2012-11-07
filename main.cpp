@@ -8,6 +8,7 @@
 #include "PrecisionTimer.h"
 #include "Cgdi.h"
 #include "ParamLoader.h"
+#include "resource.h"
 #include "WindowUtils.h"
 
 //--------------------------------- Globals ------------------------------

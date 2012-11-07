@@ -66,6 +66,7 @@
     <ClCompile Include="iniFileLoaderBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParamLoader.cpp" />
+    <ClCompile Include="PrecisionTimer.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="WindowUtils.cpp" />
   </ItemGroup>
@@ -77,10 +78,15 @@
     <ClInclude Include="iniFileLoaderBase.h" />
     <ClInclude Include="ParamLoader.h" />
     <ClInclude Include="PrecisionTimer.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Stream_Utility_Functions.h" />
     <ClInclude Include="Transformations.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="WindowUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Params.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
