@@ -28,6 +28,9 @@
     <Filter Include="Block Buster Code\Space">
       <UniqueIdentifier>{d7360833-f927-46db-bccd-4ae89d2a4caa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Block Buster Code\Entities">
+      <UniqueIdentifier>{7e26328c-f174-4797-b228-ac4df0a8c0d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,9 +98,6 @@
     <ClInclude Include="World.hpp">
       <Filter>Block Buster Code</Filter>
     </ClInclude>
-    <ClInclude Include="StaticEntity.hpp">
-      <Filter>Block Buster Code</Filter>
-    </ClInclude>
     <ClInclude Include="Message.hpp">
       <Filter>Block Buster Code\Messaging</Filter>
     </ClInclude>
@@ -109,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Messageable.hpp">
       <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticEntity.hpp">
+      <Filter>Block Buster Code\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

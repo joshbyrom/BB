@@ -7,17 +7,17 @@ namespace AI {
 			Grid();
 			~Grid();
 
-			T get(int column, int row) const;
+			T Get(int column, int row) const;
 
-			void init(std::function<T(int, int)> generator);
+			void Init(std::function<T(int, int)> generator);
 
-			int get_number_of_columns() { return COLUMNS; }
-			int get_number_of_rows() { return ROWS; }
+			int GetNumberOfColumns() { return COLUMNS; }
+			int GetNumberOfRows() { return ROWS; }
 
 		private:
 			T * elems;
 
-			int to_index(const int column, const int row) const { return column * ROWS + row; }
+			int ToIndex(const int column, const int row) const { return column * ROWS + row; }
 	};
 
 	template <typename T, int COLUMNS, int ROWS>
@@ -35,19 +35,19 @@ namespace AI {
 	}
 
 	template <typename T, int COLUMNS, int ROWS>
-	T Grid<T, COLUMNS, ROWS>::get(int columns, int rows) const {
-		int guarded_column = columns%COLUMNS;
-		int guarded_row = rows%ROWS;
+	T Grid<T, COLUMNS, ROWS>::Get(int columns, int rows) const {
+		int guardedColumn = columns%COLUMNS;
+		int guardedRow = rows%ROWS;
 
-		guarded_column += guarded_column < 0 ? COLUMNS : 0;
-		guarded_row += guarded_row  < 0 ? ROWS : 0;
+		guardedColumn += guardedColumn < 0 ? COLUMNS : 0;
+		guardedRow += guardedRow  < 0 ? ROWS : 0;
 
-		int index = to_index(guarded_column, guarded_row);
+		int index = to_index(guardedColumn, guardedRow);
 		return elems[index];
 	}
 
 	template <typename T, int COLUMNS, int ROWS>
-	void Grid<T, COLUMNS, ROWS>::init(std::function<T(int, int)> generator) {
+	void Grid<T, COLUMNS, ROWS>::Init(std::function<T(int, int)> generator) {
 		T result; int index;
 		for(int c = 0; c < COLUMNS; ++c) {
 			for(int r = 0; r < ROWS; ++r) {

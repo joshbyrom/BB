@@ -6,11 +6,11 @@ public:
 	Message(const T& sender, const T& receiver);
 	~Message();
 
-	T get_reciever() { return receiver; }
-	T get_sender() { return sender; }
+	T GetReciever() { return receiver; }
+	T GetSender() { return sender; }
 
-	unsigned int get_age() { return ((clock() - creation_clock) * 1000) / CLOCKS_PER_SEC; }
-	unsigned int get_type() { return TYPE; }	// essentially type is the message
+	unsigned int GetAge() { return ((clock() - creation_clock) * 1000) / CLOCKS_PER_SEC; }
+	unsigned int GetType() { return TYPE; }	// essentially type is the message
 private:
 	T * sender;
 	T * receiver;
