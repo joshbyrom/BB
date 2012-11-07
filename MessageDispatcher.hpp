@@ -5,4 +5,4 @@ class MessageDispatcher {
 public:
 private:
 
-}
+};
