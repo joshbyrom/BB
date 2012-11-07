@@ -113,6 +113,9 @@
     <ClInclude Include="StaticEntity.hpp">
       <Filter>Block Buster Code\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="MessageDispatcher.hpp">
+      <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Params.ini">

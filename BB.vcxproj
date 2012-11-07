@@ -79,6 +79,7 @@
     <ClInclude Include="iniFileLoaderBase.h" />
     <ClInclude Include="Message.hpp" />
     <ClInclude Include="Messageable.hpp" />
+    <ClInclude Include="MessageDispatcher.hpp" />
     <ClInclude Include="MessageTypes.h" />
     <ClInclude Include="ParamLoader.h" />
     <ClInclude Include="PrecisionTimer.h" />
