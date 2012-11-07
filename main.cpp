@@ -11,6 +11,7 @@
 #include "headers/resource.h"
 #include "headers/WindowUtils.h"
 
+#include "game/entities/StaticEntity.hpp"
 //--------------------------------- Globals ------------------------------
 //
 //------------------------------------------------------------------------

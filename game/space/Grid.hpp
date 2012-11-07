@@ -1,3 +1,6 @@
+#ifndef GRID_HPP
+#define GRID_HPP
+
 #include <functional>
 
 namespace AI {
@@ -60,3 +63,5 @@ namespace AI {
 	}
 
 };
+
+#endif
