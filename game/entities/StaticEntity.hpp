@@ -4,11 +4,16 @@
 #include "../messaging/MessageDispatcher.hpp"
 
 namespace AI {
-	class StaticEntity : GameMessaging::Messageable<GameMessaging::MessageType, StaticEntity> {
+	using GameMessaging::Messageable;
+	using GameMessaging::MessageType;
+	using GameMessaging::Message;
 
+	class StaticEntity : public Messageable<MessageType, StaticEntity> {
+
+	
+	public:
+		virtual bool StaticEntity::ReceiveMessage(const Message<MessageType, StaticEntity>& message) {
+
+		}
 	};
-
-	bool StaticEntity::ReceiveMessage(const GameMessaging::Message<GameMessaging::MessageType, StaticEntity>& message) {
-
-	}
 }
