@@ -122,6 +122,9 @@
     <ClInclude Include="game\entities\Entity.hpp">
       <Filter>Block Buster Code\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="game\Container.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="options\Params.ini">

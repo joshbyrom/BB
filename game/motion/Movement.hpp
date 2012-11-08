@@ -29,7 +29,7 @@ namespace Motion {
 
 	template<typename T, typename K>
 	T Movement<T, K>::GetPosition() const {
-		return position;
+		return *position;
 	}
 
 	template<typename T, typename K>

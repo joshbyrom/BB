@@ -71,6 +71,7 @@
     <ClCompile Include="source\WindowUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game\Container.hpp" />
     <ClInclude Include="game\motion\Kinematic.hpp" />
     <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="headers\C2DMatrix.h" />

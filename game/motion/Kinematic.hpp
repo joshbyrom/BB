@@ -7,19 +7,22 @@ namespace Motion {
 	template<typename T>
 	class Kinematic : public Movement<T, double> {
 		public:
-			Kinematic();
-			~Kinematic();
+			Kinematic() : velocity(new T()), acceleration(new T()) {
+				// get max force from params.ini
+				this->maxForce = 0;	 // TODO
+			}
+
+			~Kinematic() {
+				delete velocity;
+				delete acceleration;
+			}
 
 			void update(double time);
 
 		 
 			virtual void ApplyForce(const T& force) {
-				acceleration += force;
-
-				if(acceleration.Length() > maxForce) {
-					acceleration.Normalize();
-					acceleration *= maxForce;
-				}
+				*acceleration += force;
+				acceleration->Truncate(maxForce);
 			}
 
 		private:
@@ -34,7 +37,7 @@ namespace Motion {
 		position += velocity * time + 0.5 * time;
 		velocity += acceleration * time;
 
-		acceleration *= 0;
+		acceleration->Zero();
 	}
 }
 			
