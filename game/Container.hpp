@@ -7,7 +7,8 @@ namespace AI {
 	template<typename T>
 	class Container {
 		public:
-			Container(const T * parent) : parent(parent || NULL) {}
+			Container() : parent(NULL) {}
+			Container(T * parent) : parent(parent) {}
 			~Container() {}
 
 			void AddChild(const T& child) {
@@ -34,8 +35,11 @@ namespace AI {
 
 			T * GetParent() const { return parent; }
 			std::vector<T> GetChildren() { return children; }
-		private:
+
+		protected:
 			T * parent;
+
+		private:
 			std::vector<T> children;
 
 			bool contains(const T& t) { 

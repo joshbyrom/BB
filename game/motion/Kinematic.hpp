@@ -21,7 +21,7 @@ namespace Motion {
 			T GetAcceleration() const { return *acceleration; }
 			T GetHeading() const;
 
-			void update(double time);
+			virtual void update(const double& time);
 
 		 
 			virtual void ApplyForce(const T& force) {
@@ -37,9 +37,11 @@ namespace Motion {
 	};
 
 	template<typename T>
-	void Kinematic<T>::update(double time) {
-		position += velocity * time + 0.5 * time;
-		velocity += acceleration * time;
+	void Kinematic<T>::update(const double& time) {
+		double halfTime = 0.5 * time;
+
+		*position += *velocity * time + Vector2D(halfTime, halfTime);
+		*velocity += *acceleration * time;
 
 		acceleration->Zero();
 	}
