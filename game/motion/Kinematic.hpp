@@ -30,7 +30,7 @@ namespace Motion {
 	};
 
 	template<typename T>
-	Kinematic<T>::update(double time) {
+	void Kinematic<T>::update(double time) {
 		position += velocity * time + 0.5 * time;
 		velocity += acceleration * time;
 

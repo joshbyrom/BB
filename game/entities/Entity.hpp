@@ -12,7 +12,7 @@ namespace AI {
 	using GameMessaging::MessageType;
 	using GameMessaging::Message;
 
-	using Movement::Kinematic;
+	using Motion::Kinematic;
 
 	class Entity : public Messageable<MessageType, Entity> {
 
