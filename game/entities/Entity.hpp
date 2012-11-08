@@ -66,8 +66,15 @@ namespace AI {
 	}
 
 	Vector2D Entity::GetGlobalPosition() const {
-		if(GetParent()) return GetLocalPosition() + GetParent()->GetGlobalPosition();
-		else return GetLocalPosition();
+		Vector2D result = GetLocalPosition();
+
+		Entity * ancestor = GetParent();
+		while(ancestor) {
+			result += ancestor->GetLocalPosition();
+			ancestor = ancestor->GetParent();
+		}
+
+		return result;
 	}
 
 	double Entity::GetWidth() {
