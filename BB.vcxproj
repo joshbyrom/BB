@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\Container.hpp" />
+    <ClInclude Include="game\Game.hpp" />
     <ClInclude Include="game\motion\Kinematic.hpp" />
     <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="game\space\Bounds.hpp" />
