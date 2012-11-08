@@ -17,6 +17,10 @@ namespace Motion {
 				delete acceleration;
 			}
 
+			T GetVelocity() const { return *velocity; }
+			T GetAcceleration() const { return *acceleration; }
+			T GetHeading() const;
+
 			void update(double time);
 
 		 
@@ -38,6 +42,11 @@ namespace Motion {
 		velocity += acceleration * time;
 
 		acceleration->Zero();
+	}
+
+	template<typename T>
+	T Kinematic<T>::GetHeading() const {
+		return *velocity.Normalize();
 	}
 }
 			

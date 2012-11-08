@@ -3,7 +3,7 @@
 
 #include <functional>
 
-namespace AI {
+namespace Space {
 	template <typename T, int COLUMNS, int ROWS>
 	class Grid {
 		public:

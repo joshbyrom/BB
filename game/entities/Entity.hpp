@@ -4,7 +4,7 @@
 #include "../messaging/MessageDispatcher.hpp"
 
 #include "../motion/Kinematic.hpp"
-
+#include "../space/Bounds.hpp"
 #include "../Container.hpp"
 
 #include "../../headers/Vector2D.h"
@@ -32,6 +32,7 @@ namespace AI {
 
 	private:
 		Kinematic<Vector2D> * kinematic;
+		Bounds<Entity> * bounds;
 	};
 
 	Vector2D Entity::GetLocalPosition() const {
