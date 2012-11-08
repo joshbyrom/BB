@@ -33,6 +33,7 @@ namespace Space {
 			double Top()    { return position().y; }
 			double Bottom() { return position().y + GetHeight(); }
 
+			K GetCenter() { return K(Left() + GetWidth() * 0.5, Top() + GetHeight() * 0.5); }
 			T GetBoundedObject() const { return *t; }
 		private:
 			T * t;

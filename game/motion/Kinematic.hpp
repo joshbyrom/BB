@@ -48,7 +48,8 @@ namespace Motion {
 
 	template<typename T>
 	T Kinematic<T>::GetHeading() const {
-		return *velocity.Normalize();
+		T t = velocity->Copy();
+		return t.Normalize();
 	}
 }
 			

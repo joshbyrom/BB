@@ -9,6 +9,8 @@
 
 #include "../../headers/Vector2D.h"
 
+#include <math.h>
+
 namespace AI {
 	using GameMessaging::Messageable;
 	using GameMessaging::MessageType;
@@ -38,6 +40,19 @@ namespace AI {
 
 			double GetWidth();
 			double GetHeight();
+
+			double GetAngleToEntity(Entity other) {
+				Vector2D diff = GetGlobalPosition() - other.GetGlobalPosition();
+				double result = atan2(diff.y, diff.x);
+				return result < 0 ? result + TwoPi : result;
+			}
+
+			double GetDistanceToEntity(Entity other) {
+				return GetGlobalPosition().Distance(other.GetGlobalPosition());
+			}
+
+
+			bool Family(const Entity& other) { return GetParent() == other.GetParent(); }
 		protected:
 			double width;
 			double height;

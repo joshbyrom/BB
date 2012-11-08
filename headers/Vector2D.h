@@ -62,6 +62,10 @@ struct Vector2D
   //returns the vector that is the reverse of this vector
   inline Vector2D  GetReverse()const;
 
+  inline Vector2D Copy() const {
+	  return Vector2D(this->x, this->y);
+  }
+
 
   //we need some overloaded operators
   const Vector2D& operator+=(const Vector2D &rhs)
