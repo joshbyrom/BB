@@ -1,13 +1,24 @@
 #ifndef BOUNDS_H
 #define BOUNDS_H
 
+#include <functional>
+
 namespace Space {
-	template<typename T>
+	// T is required to have
+	//  function :
+	//		GetWidth
+	//		GetHeight
+	//	members :
+	//		x
+	//		y
+
+	template<typename T, typename K>
 	class Bounds {
 		public:
-			Bounds(T t);
+			Bounds(T& t, std::function<K()> fun);  // TODO sense changes in T to cache fun() results
 			~Bounds() {}
 
+			K GetTopLeft() { return position(); }
 			double GetWidth()  { return t->GetWidth(); }
 			double GetHeight() { return t->GetHeight(); }
 			double GetRadius() { 
@@ -17,14 +28,21 @@ namespace Space {
 				return width > height ? width : height;
 			}
 
+			double Left()   { return position().x; }
+			double Right()  { return position().x + GetWidth(); }
+			double Top()    { return position().y; }
+			double Bottom() { return position().y + GetHeight(); }
+
 			T GetBoundedObject() const { return *t; }
 		private:
 			T * t;
+
+			std::function<K()> position;
 	};
 
-	template<typename T>
-	Bounds<T>::Bounds(T t) 
-		: t(&t) {
+	template<typename T, typename K>
+	Bounds<T, K>::Bounds(T& t, std::function<K()> fun) 
+		: t(&t), position(fun) {
 
 	}
 }

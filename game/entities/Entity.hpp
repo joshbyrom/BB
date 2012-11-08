@@ -33,8 +33,8 @@ namespace AI {
 				return true;
 			}
 
-			Bounds<Entity> GetLocalBounds();
-			Bounds<Entity> GetGlobalBounds();
+			Bounds<Entity, Vector2D> GetLocalBounds();
+			Bounds<Entity, Vector2D> GetGlobalBounds();
 
 			double GetWidth();
 			double GetHeight();
@@ -43,10 +43,13 @@ namespace AI {
 			double height;
 
 			Kinematic<Vector2D> * kinematic;
+			Bounds<Entity, Vector2D> * localBounds;
+			Bounds<Entity, Vector2D> * globalBounds;
 	};
 
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),
 					   Messageable(), Container(),
+					   localBounds(NULL), globalBounds(NULL),
 	                   width(0), height(0) {
 
 	}
@@ -54,6 +57,7 @@ namespace AI {
 	Entity::Entity(Entity * parent) 
 		: kinematic(new Kinematic<Vector2D>()),
 		  Messageable(), Container(parent),
+		  localBounds(NULL), globalBounds(NULL),
 	      width(0), height(0) {
 	}
 
@@ -86,6 +90,32 @@ namespace AI {
 	double Entity::GetHeight() {
 		return sum ([] (Entity e) -> double {
 			return e.GetHeight();
+		});
+	}
+
+	Bounds<Entity, Vector2D> Entity::GetLocalBounds() {
+		if(localBounds) return *localBounds;
+
+		localBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
+			return this->GetLocalPosition();
+		});
+
+		return GetLocalBounds();
+	}
+
+	Bounds<Entity, Vector2D> Entity::GetGlobalBounds() {
+		if(globalBounds) return *globalBounds;
+
+		globalBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
+			return this->GetGlobalPosition();
+		});
+
+		return GetLocalBounds();
+	}
+
+	void Entity::update(double time) {
+		map([&] (Entity e) -> void {
+			e.update(time);
 		});
 	}
 }
