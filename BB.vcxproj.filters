@@ -98,9 +98,6 @@
     <ClInclude Include="headers\Stream_Utility_Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\entities\StaticEntity.hpp">
-      <Filter>Block Buster Code\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="headers\Vector2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -115,6 +112,15 @@
     </ClInclude>
     <ClInclude Include="game\messaging\MessageTypes.h">
       <Filter>Block Buster Code\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="game\motion\Movement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\motion\Kinematic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\entities\Entity.hpp">
+      <Filter>Block Buster Code\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

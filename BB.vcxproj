@@ -71,6 +71,8 @@
     <ClCompile Include="source\WindowUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game\motion\Kinematic.hpp" />
+    <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="headers\C2DMatrix.h" />
     <ClInclude Include="headers\Cgdi.h" />
     <ClInclude Include="headers\constants.h" />
@@ -84,7 +86,7 @@
     <ClInclude Include="headers\ParamLoader.h" />
     <ClInclude Include="headers\PrecisionTimer.h" />
     <ClInclude Include="headers\resource.h" />
-    <ClInclude Include="game\entities\StaticEntity.hpp" />
+    <ClInclude Include="game\entities\Entity.hpp" />
     <ClInclude Include="headers\Stream_Utility_Functions.h" />
     <ClInclude Include="headers\Transformations.h" />
     <ClInclude Include="headers\utils.h" />
