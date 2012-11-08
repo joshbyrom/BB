@@ -1,6 +1,7 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
 
+#include <functional>
 #include <algorithm>
 
 namespace AI {
@@ -20,7 +21,7 @@ namespace AI {
 				std::vector<T> copy;
 
 				T t;
-				for(int i = 0; i < children.size(); ++i) {
+				for(unsigned int i = 0; i < children.size(); ++i) {
 					t = children[i];
 					if(t != child) {
 						copy.push_front(t);
@@ -36,6 +37,8 @@ namespace AI {
 			T * GetParent() const { return parent; }
 			std::vector<T> GetChildren() { return children; }
 
+			void map(std::function<void(T)> fun);
+			double sum(std::function<double(T)> fun);
 		protected:
 			T * parent;
 
@@ -46,6 +49,20 @@ namespace AI {
 				return std::find(children.begin(), children.end(), t) != children.end(); 
 			}
 	};
+
+	template<typename T>
+	void Container<T>::map(std::function<void(T)> fun) {
+		for_each(children.begin(), children.end(), fun);
+	}
+
+	template<typename T>
+	double Container<T>::sum(std::function<double(T)> fun) {
+		double acc = 0;
+		for(unsigned int i = 0; i < children.size(); ++i) {
+			acc += fun(children[i]);
+		}
+		return acc;
+	}
 }
 
 #endif

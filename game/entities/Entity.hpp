@@ -19,28 +19,30 @@ namespace AI {
 
 	class Entity : public Messageable<MessageType, Entity>, 
 		           public Container<Entity> {
-	public:
-		Entity();
-		Entity(Entity * parent);
-		~Entity();
+		public:
+			Entity();
+			Entity(Entity * parent);
+			~Entity();
 
-		void update(double time);
+			void update(double time);
 
-		Vector2D GetLocalPosition() const;
-		Vector2D GetGlobalPosition() const;
+			Vector2D GetLocalPosition() const;
+			Vector2D GetGlobalPosition() const;
 
-		virtual bool Entity::ReceiveMessage(const Message<MessageType, Entity>& message) {
-			return true;
-		}
+			virtual bool Entity::ReceiveMessage(const Message<MessageType, Entity>& message) {
+				return true;
+			}
 
+			Bounds<Entity> GetLocalBounds();
+			Bounds<Entity> GetGlobalBounds();
 
-		double GetWidth();
-		double GetHeight();
-	private:
-		double width;
-		double height;
+			double GetWidth();
+			double GetHeight();
+		protected:
+			double width;
+			double height;
 
-		Kinematic<Vector2D> * kinematic;
+			Kinematic<Vector2D> * kinematic;
 	};
 
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),
@@ -66,5 +68,17 @@ namespace AI {
 	Vector2D Entity::GetGlobalPosition() const {
 		if(GetParent()) return GetLocalPosition() + GetParent()->GetGlobalPosition();
 		else return GetLocalPosition();
+	}
+
+	double Entity::GetWidth() {
+		return sum ([] (Entity e) -> double {
+			return e.GetWidth();
+		});
+	}
+
+	double Entity::GetHeight() {
+		return sum ([] (Entity e) -> double {
+			return e.GetHeight();
+		});
 	}
 }
