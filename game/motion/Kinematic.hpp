@@ -3,7 +3,7 @@
 
 #include "Movement.hpp"
 
-namespace Movement {
+namespace Motion {
 	template<typename T>
 	class Kinematic : public Movement<T, double> {
 		public:
