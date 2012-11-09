@@ -140,6 +140,9 @@
     <ClInclude Include="game\flow\Transition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\flow\Updateable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="options\Params.ini">
