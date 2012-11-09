@@ -78,6 +78,8 @@ namespace AI {
 
 	Entity::~Entity() {
 		delete kinematic;
+		delete localBounds;
+		delete globalBounds;
 	}
 
 	Vector2D Entity::GetLocalPosition() const {
