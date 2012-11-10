@@ -35,8 +35,8 @@ namespace AI {
 				return true;
 			}
 
-			Bounds<Entity, Vector2D> GetLocalBounds();
-			Bounds<Entity, Vector2D> GetGlobalBounds();
+			Bounds<Entity, Vector2D> GetLocalBounds() const;
+			Bounds<Entity, Vector2D> GetGlobalBounds() const;
 
 			Kinematic<Vector2D> GetKinematic() const;
 
@@ -58,7 +58,10 @@ namespace AI {
 
 			bool operator==(const Entity& rhs)const
 			{
+				// add more here
 				return GetKinematic() == rhs.GetKinematic() &&
+					   GetLocalBounds() == rhs.GetLocalBounds() &&
+					   GetGlobalBounds() == rhs.GetGlobalBounds() &&
 					   Container::operator==(rhs);
 			}
 		protected:
@@ -75,7 +78,13 @@ namespace AI {
 	};
 
 	void Entity::init() {
+		localBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
+			return this->GetLocalPosition();
+		});
 
+		globalBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
+			return this->GetGlobalPosition();
+		});
 
 		if(parent) {
 			parent->AddChild(*this);
@@ -131,24 +140,12 @@ namespace AI {
 		});
 	}
 
-	Bounds<Entity, Vector2D> Entity::GetLocalBounds() {
-		if(localBounds) return *localBounds;
-
-		localBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
-			return this->GetLocalPosition();
-		});
-
-		return GetLocalBounds();
+	Bounds<Entity, Vector2D> Entity::GetLocalBounds() const {
+		return *localBounds;
 	}
 
-	Bounds<Entity, Vector2D> Entity::GetGlobalBounds() {
-		if(globalBounds) return *globalBounds;
-
-		globalBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
-			return this->GetGlobalPosition();
-		});
-
-		return GetLocalBounds();
+	Bounds<Entity, Vector2D> Entity::GetGlobalBounds() const {
+		return *globalBounds;
 	}
 
 	Kinematic<Vector2D> Entity::GetKinematic() const {

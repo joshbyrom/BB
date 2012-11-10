@@ -15,30 +15,30 @@ namespace Space {
 	template<typename T, typename K>
 	class Bounds {
 		public:
-			Bounds(T& t, std::function<K()> fun);  // TODO sense changes in T to cache fun() results
+			Bounds(const T& t, std::function<K()> fun);  // TODO sense changes in T to cache fun() results
 			~Bounds() {}
 
-			K GetTopLeft() { return position(); }
-			double GetWidth()  { return t->GetWidth(); }
-			double GetHeight() { return t->GetHeight(); }
-			double GetRadius() { 
+			K GetTopLeft() const { return position(); }
+			double GetWidth() const  { return t->GetWidth(); }
+			double GetHeight() const { return t->GetHeight(); }
+			double GetRadius() const { 
 				double width = GetWidth();
 				double height = GetHeight();
 
 				return width > height ? width : height;
 			}
 
-			double Left()   { return position().x; }
-			double Right()  { return position().x + GetWidth(); }
-			double Top()    { return position().y; }
-			double Bottom() { return position().y + GetHeight(); }
+			double Left() const   { return position().x; }
+			double Right() const  { return position().x + GetWidth(); }
+			double Top() const    { return position().y; }
+			double Bottom() const { return position().y + GetHeight(); }
 
 			K GetCenter() { return K(Left() + GetWidth() * 0.5, Top() + GetHeight() * 0.5); }
 			T GetBoundedObject() const { return *t; }
 
 			bool operator==(const Bounds<T, K>& rhs)const
 			{
-				return T == rhs.GetBoundedObject() &&
+				return *t == rhs.GetBoundedObject() &&
 					Left() == rhs.Left() && Top() == rhs.Top();
 			}
 
@@ -48,13 +48,13 @@ namespace Space {
 					Left() != rhs.Left() && Top() != rhs.Top();
 			}
 		private:
-			T * t;
+			const T * t;
 
 			std::function<K()> position;
 	};
 
 	template<typename T, typename K>
-	Bounds<T, K>::Bounds(T& t, std::function<K()> fun) 
+	Bounds<T, K>::Bounds(const T& t, std::function<K()> fun) 
 		: t(&t), position(fun) {
 
 	}
