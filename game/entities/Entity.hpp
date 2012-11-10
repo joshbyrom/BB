@@ -6,6 +6,7 @@
 #include "../motion/Kinematic.hpp"
 #include "../space/Bounds.hpp"
 #include "../Container.hpp"
+#include "../flow/Updater.hpp"
 
 #include "../../headers/Vector2D.h"
 

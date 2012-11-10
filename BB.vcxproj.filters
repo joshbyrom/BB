@@ -140,7 +140,7 @@
     <ClInclude Include="game\flow\Transition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\flow\Updateable.hpp">
+    <ClInclude Include="game\flow\Updater.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
