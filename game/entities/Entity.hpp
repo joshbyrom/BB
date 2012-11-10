@@ -38,6 +38,8 @@ namespace AI {
 			Bounds<Entity, Vector2D> GetLocalBounds();
 			Bounds<Entity, Vector2D> GetGlobalBounds();
 
+			Kinematic<Vector2D> GetKinematic() const;
+
 			double GetWidth();
 			double GetHeight();
 
@@ -53,6 +55,12 @@ namespace AI {
 
 
 			bool Family(const Entity& other) { return GetParent() == other.GetParent(); }
+
+			bool operator==(const Entity& rhs)const
+			{
+				return GetKinematic() == rhs.GetKinematic() &&
+					   Container::operator==(rhs);
+			}
 		protected:
 			double width;
 			double height;
@@ -112,13 +120,13 @@ namespace AI {
 	}
 
 	double Entity::GetWidth() {
-		return sum ([] (Entity e) -> double {
+		return Sum ([] (Entity e) -> double {
 			return e.GetWidth();
 		});
 	}
 
 	double Entity::GetHeight() {
-		return sum ([] (Entity e) -> double {
+		return Sum ([] (Entity e) -> double {
 			return e.GetHeight();
 		});
 	}
@@ -141,5 +149,9 @@ namespace AI {
 		});
 
 		return GetLocalBounds();
+	}
+
+	Kinematic<Vector2D> Entity::GetKinematic() const {
+		return *kinematic;
 	}
 }

@@ -14,34 +14,34 @@ namespace AI {
 
 			void AddChild(const T& child) {
 				if(contains(child)) return;
-				else children.push_front(child);
+				else children.push_back(child);
 			}
 
 			void RemoveChild(const T& child) {
 				std::vector<T> copy;
 
-				T t;
+				T * t = NULL;
 				for(unsigned int i = 0; i < children.size(); ++i) {
-					t = children[i];
-					if(t != child) {
-						copy.push_front(t);
+					t = &children[i];
+					if(&(*t) != &child) {
+						copy.push_back(*t);
 					}
 				}
 
 				children = copy;
 			};
 
-			UINT RemoveIf(std::function<bool()> pred) {
+			UINT RemoveIf(std::function<bool(T)> pred) {
 				std::vector<T> copy;
 				UINT numberRemoved = 0;
 
-				T t;
+				T * t = NULL;
 				for(unsigned int i = 0; i < children.size(); ++i) {
-					t = children[i];
-					if(pred(t)) {
+					t = &children[i];
+					if(pred(*t)) {
 						// don't add it
 					} else {
-						copy.push_front(t);
+						copy.push_back(*t);
 					}
 				}
 
@@ -53,10 +53,24 @@ namespace AI {
 			T * GetChildAt(int index) const { return children.at(index); }
 
 			T * GetParent() const { return parent; }
-			std::vector<T> GetChildren() { return children; }
+			std::vector<T> GetChildren() const { return children; }
 
 			void Map(std::function<void(T)> fun);
 			double Sum(std::function<double(T)> fun);
+
+			bool operator==(const Container<T>& rhs)const
+			{
+				return &parent == &parent &&
+					children == rhs.GetChildren();
+			}
+
+			bool operator!=(const Container<T>& rhs)const
+			{
+				return &parent != &parent &&
+					std::equal(children.begin(), children.end(), rhs.GetChildren().begin(), [] (T t1, T t2) {
+						return t1 == t2;
+					});
+			}
 		protected:
 			T * parent;
 

@@ -35,6 +35,18 @@ namespace Space {
 
 			K GetCenter() { return K(Left() + GetWidth() * 0.5, Top() + GetHeight() * 0.5); }
 			T GetBoundedObject() const { return *t; }
+
+			bool operator==(const Bounds<T, K>& rhs)const
+			{
+				return T == rhs.GetBoundedObject() &&
+					Left() == rhs.Left() && Top() == rhs.Top();
+			}
+
+			bool operator!=(const Bounds<T, K>& rhs)const
+			{
+				return T != rhs.GetBoundedObject() &&
+					Left() != rhs.Left() && Top() != rhs.Top();
+			}
 		private:
 			T * t;
 

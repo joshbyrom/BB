@@ -29,6 +29,18 @@ namespace Motion {
 				acceleration->Truncate(maxForce);
 			}
 
+			bool operator==(const Kinematic<T>& rhs)const
+			{
+				return GetVelocity() == rhs.GetVelocity() &&
+					   GetAcceleration() == rhs.GetAcceleration();
+			}
+
+			bool operator!=(const Kinematic<T>& rhs)const
+			{
+				return GetVelocity() != rhs.GetVelocity() &&
+					   GetAcceleration() != rhs.GetAcceleration();
+			}
+
 		private:
 			T * velocity;
 			T * acceleration;
