@@ -31,14 +31,32 @@ namespace AI {
 				children = copy;
 			};
 
+			UINT RemoveIf(std::function<bool()> pred) {
+				std::vector<T> copy;
+				UINT numberRemoved = 0;
+
+				T t;
+				for(unsigned int i = 0; i < children.size(); ++i) {
+					t = children[i];
+					if(pred(t)) {
+						// don't add it
+					} else {
+						copy.push_front(t);
+					}
+				}
+
+				children = copy;
+				return numberRemoved;
+			}
+
 			int GetNumberOfChildren() { return children.size(); }
 			T * GetChildAt(int index) const { return children.at(index); }
 
 			T * GetParent() const { return parent; }
 			std::vector<T> GetChildren() { return children; }
 
-			void map(std::function<void(T)> fun);
-			double sum(std::function<double(T)> fun);
+			void Map(std::function<void(T)> fun);
+			double Sum(std::function<double(T)> fun);
 		protected:
 			T * parent;
 
@@ -51,12 +69,12 @@ namespace AI {
 	};
 
 	template<typename T>
-	void Container<T>::map(std::function<void(T)> fun) {
+	void Container<T>::Map(std::function<void(T)> fun) {
 		for_each(children.begin(), children.end(), fun);
 	}
 
 	template<typename T>
-	double Container<T>::sum(std::function<double(T)> fun) {
+	double Container<T>::Sum(std::function<double(T)> fun) {
 		double acc = 0;
 		for(unsigned int i = 0; i < children.size(); ++i) {
 			acc += fun(children[i]);

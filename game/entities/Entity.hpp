@@ -68,6 +68,10 @@ namespace AI {
 
 	void Entity::init() {
 
+
+		if(parent) {
+			parent->AddChild(*this);
+		}
 	}
 
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),

@@ -14,47 +14,66 @@ namespace FlowControl {
 			Updater(std::function<void()> fun, uint64_t delay, uint64_t duration, uint16_t repeats);
 			~Updater();
 
-			void update();
+			void Update();
 
-			Updater withOnStarted(std::function<void()> onStart) {
+			void UpdateChildren() {
+				Map([&] (Updater e) -> void {
+					e.Update();
+				});
+			}
+
+			void RemoveFinishedChildren() {
+				RemoveIf([] (Updater up) -> bool {
+					return up.IsFinished();
+				});
+			}
+
+			Updater WithOnStarted(std::function<void()> onStart) {
 				if(!running) 
 					onStarted = &onStart;
 				return *this;
 			}
 
-			Updater withOnFinished(std::function<void()> onFinish) {
+			Updater WithOnFinished(std::function<void()> onFinish) {
 				if(!running)
 					onFinished = &onFinish;
 				return *this;
 			}
 
-			Updater withInfiniteRepeats() {
+			Updater WithInfiniteRepeats() {
 				infinite = true;
 				return *this;
 			}
 
-			void pause() {
+			void Pause() {
 				if(paused) return;
 
 				paused = true;
-				map([&] (Updater e) -> void {
-					e.pause();
+				Map([&] (Updater e) -> void {
+					e.Pause();
 				});
 
 				QueryPerformanceCounter((LARGE_INTEGER *)&pausedTime);
 			}
 
-			void resume() {
+			void Resume() {
 				if(!paused) return;
 
 				paused = false;
-				map([&] (Updater e) -> void {
-					e.resume();
+				Map([&] (Updater e) -> void {
+					e.Resume();
 				});
+				
+				QueryPerformanceCounter((LARGE_INTEGER *)&now);
+				uint64_t nextDelay = max(delay - (pausedTime - lastUpdate), 0);
+				SetNextStartTime(now, nextDelay);
 			}
+
+			bool IsFinished() { return finished; }
 		private:
 			bool running;
 			bool paused;
+			bool finished;
 
 			uint64_t pausedTime;
 
@@ -70,7 +89,7 @@ namespace FlowControl {
 
 			bool infinite;
 
-			inline void setNextStartTime(const uint64_t& now) {
+			inline void SetNextStartTime(const uint64_t& now, const uint64_t& delay) {
 				startTime = now + delay;
 				finishTime = startTime + duration;
 			};
@@ -86,20 +105,24 @@ namespace FlowControl {
 							  uint16_t repeats)
 		: delay(delay), duration(duration), repeats(repeats), running(false),
 	      onStarted(NULL), onFinished(NULL), onUpdate(&fun), infinite(false) {
-			
+
+		
+		QueryPerformanceCounter((LARGE_INTEGER *)&now);
+		SetNextStartTime(now, delay);
 	}
 
 	Updater::~Updater() {
 
 	}
 
-	void Updater::update() {
+	void Updater::Update() {
 		if(paused) return;
 
 		if(!infinite && repeats <= 0) {
 			if(running) {
 				if(onFinished) (*onFinished)();
 				running = false;
+				finished = true;
 			}
 			return;
 		}
@@ -114,11 +137,10 @@ namespace FlowControl {
 
 			if(onUpdate) (*onUpdate)();
 
-			// update children
-			map([&] (Updater e) -> void {
-				e.update();
-			});
+			UpdateChildren();
+			RemoveFinishedChildren();
 
+			SetNextStartTime(now, delay);
 			repeats--;
 		}
 
