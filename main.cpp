@@ -12,6 +12,7 @@
 #include "headers/WindowUtils.h"
 
 #include "game/entities/Entity.hpp"
+#include "game/Game.hpp"
 //--------------------------------- Globals ------------------------------
 //
 //------------------------------------------------------------------------
@@ -20,6 +21,7 @@ char* g_szApplicationName = "Block Buster";
 char*	g_szWindowClassName = "MyWindowClass";
 
 //GameWorld* g_GameWorld;
+Game::Game<int> game;
 
 
 //---------------------------- WindowProc ---------------------------------
@@ -76,7 +78,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
 			  
          //select the bitmap into the memory device context
-			   hOldBitmap = (HBITMAP)SelectObject(hdcBackBuffer, hBitmap);
+		 hOldBitmap = (HBITMAP)SelectObject(hdcBackBuffer, hBitmap);
 
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 

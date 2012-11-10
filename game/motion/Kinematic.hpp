@@ -21,10 +21,10 @@ namespace Motion {
 			T GetAcceleration() const { return *acceleration; }
 			T GetHeading() const;
 
-			virtual void update(const double& time);
+			void Update(const double& time) override;
 
 		 
-			virtual void ApplyForce(const T& force) {
+			void ApplyForce(const T& force) override {
 				*acceleration += force;
 				acceleration->Truncate(maxForce);
 			}
@@ -49,7 +49,7 @@ namespace Motion {
 	};
 
 	template<typename T>
-	void Kinematic<T>::update(const double& time) {
+	void Kinematic<T>::Update(const double& time) {
 		double halfTime = 0.5 * time;
 
 		*position += *velocity * time + Vector2D(halfTime, halfTime);

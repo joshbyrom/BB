@@ -9,7 +9,7 @@ namespace Motion {
 			~Movement();
 
 			virtual void ApplyForce(const T& force) = 0;
-			virtual void update(const K& time) = 0;
+			virtual void Update(const K& time) = 0;
 
 			T GetPosition() const;
 			bool SetPosition(const T& newPosition);

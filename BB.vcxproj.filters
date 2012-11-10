@@ -143,6 +143,9 @@
     <ClInclude Include="game\flow\Updater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\views\view.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="options\Params.ini">

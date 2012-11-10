@@ -28,21 +28,21 @@ namespace FlowControl {
 				});
 			}
 
-			Updater WithOnStarted(std::function<void()> onStart) {
+			Updater  * WithOnStarted(std::function<void()> onStart) {
 				if(!running) 
 					onStarted = &onStart;
-				return *this;
+				return this;
 			}
 
-			Updater WithOnFinished(std::function<void()> onFinish) {
+			Updater * WithOnFinished(std::function<void()> onFinish) {
 				if(!running)
 					onFinished = &onFinish;
-				return *this;
+				return this;
 			}
 
-			Updater WithInfiniteRepeats() {
+			Updater * WithInfiniteRepeats() {
 				infinite = true;
-				return *this;
+				return this;
 			}
 
 			void Pause() {
@@ -70,6 +70,14 @@ namespace FlowControl {
 			}
 
 			bool IsFinished() { return finished; }
+
+			uint64_t Elapsed() {
+				uint64_t result;
+				QueryPerformanceCounter((LARGE_INTEGER *)&result);
+
+				return now - lastUpdate;
+			}
+
 		private:
 			bool running;
 			bool paused;
@@ -103,7 +111,7 @@ namespace FlowControl {
 		                      uint64_t delay, 
 							  uint64_t duration, 
 							  uint16_t repeats)
-		: delay(delay), duration(duration), repeats(repeats), running(false),
+		: delay(delay), duration(max(11,duration)), repeats(repeats), running(false),
 	      onStarted(NULL), onFinished(NULL), onUpdate(&fun), infinite(false) {
 
 		

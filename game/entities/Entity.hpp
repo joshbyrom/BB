@@ -1,3 +1,6 @@
+#ifndef ENTITY_HPP
+#define ENTITY_HPP
+
 #include "../messaging/Message.hpp"
 #include "../messaging/Messageable.hpp"
 #include "../messaging/MessageTypes.h"
@@ -38,6 +41,7 @@ namespace AI {
 			Bounds<Entity, Vector2D> GetLocalBounds() const;
 			Bounds<Entity, Vector2D> GetGlobalBounds() const;
 
+			Updater GetUpdater() const;
 			Kinematic<Vector2D> GetKinematic() const;
 
 			double GetWidth();
@@ -64,6 +68,17 @@ namespace AI {
 					   GetGlobalBounds() == rhs.GetGlobalBounds() &&
 					   Container::operator==(rhs);
 			}
+
+			void AddChild(const Entity& e) override {
+				Container::AddChild(e);
+				updater->AddChild(e.GetUpdater());
+			}
+
+			void RemoveChild(const Entity& e) override {
+				Container::RemoveChild(e);
+				updater->RemoveChild(e.GetUpdater());
+			}
+
 		protected:
 			double width;
 			double height;
@@ -78,6 +93,10 @@ namespace AI {
 	};
 
 	void Entity::init() {
+		updater = (new Updater([this] () {
+			kinematic->Update((double) updater->Elapsed());
+		}, 0, 0, 1))->WithInfiniteRepeats();
+
 		localBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
 			return this->GetLocalPosition();
 		});
@@ -151,4 +170,10 @@ namespace AI {
 	Kinematic<Vector2D> Entity::GetKinematic() const {
 		return *kinematic;
 	}
+
+	Updater Entity::GetUpdater() const {
+		return *updater;
+	}
 }
+
+#endif

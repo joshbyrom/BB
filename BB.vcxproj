@@ -80,6 +80,7 @@
     <ClInclude Include="game\motion\Kinematic.hpp" />
     <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="game\space\Bounds.hpp" />
+    <ClInclude Include="game\views\view.hpp" />
     <ClInclude Include="headers\C2DMatrix.h" />
     <ClInclude Include="headers\Cgdi.h" />
     <ClInclude Include="headers\constants.h" />

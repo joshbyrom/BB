@@ -12,12 +12,12 @@ namespace AI {
 			Container(T * parent) : parent(parent) {}
 			~Container() {}
 
-			void AddChild(const T& child) {
+			virtual void AddChild(const T& child) {
 				if(contains(child)) return;
 				else children.push_back(child);
 			}
 
-			void RemoveChild(const T& child) {
+			virtual void RemoveChild(const T& child) {
 				std::vector<T> copy;
 
 				T * t = NULL;
@@ -57,6 +57,23 @@ namespace AI {
 
 			void Map(std::function<void(T)> fun);
 			double Sum(std::function<double(T)> fun);
+
+
+			void SwitchChildFor(const T& child, const T& to) {
+				std::vector<T> copy;
+
+				T * t = NULL;
+				for(unsigned int i = 0; i < children.size(); ++i) {
+					t = &children[i];
+					if(&(*t) != &child) {
+						copy.push_back(*t);
+					} else {
+						copy.push_back(*to);
+					}
+				}
+
+				children = copy;
+			}
 
 			bool operator==(const Container<T>& rhs)const
 			{
