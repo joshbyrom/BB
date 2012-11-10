@@ -6,7 +6,7 @@
 #include "../motion/Kinematic.hpp"
 #include "../space/Bounds.hpp"
 #include "../Container.hpp"
-#include "../flow/Updater.hpp"
+#include "../flow/Updater.h"
 
 #include "../../headers/Vector2D.h"
 
@@ -17,6 +17,7 @@ namespace AI {
 	using GameMessaging::MessageType;
 	using GameMessaging::Message;
 
+	using FlowControl::Updater;
 	using Motion::Kinematic;
 	using Space::Bounds;
 
@@ -26,8 +27,6 @@ namespace AI {
 			Entity();
 			Entity(Entity * parent);
 			~Entity();
-
-			void update(double time);
 
 			Vector2D GetLocalPosition() const;
 			Vector2D GetGlobalPosition() const;
@@ -61,13 +60,21 @@ namespace AI {
 			Kinematic<Vector2D> * kinematic;
 			Bounds<Entity, Vector2D> * localBounds;
 			Bounds<Entity, Vector2D> * globalBounds;
+
+			Updater * updater;
+
+			void init();
 	};
+
+	void Entity::init() {
+
+	}
 
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),
 					   Messageable(), Container(),
 					   localBounds(NULL), globalBounds(NULL),
-	                   width(0), height(0) {
-
+	                   width(0), height(0), updater(NULL) {
+		init();
 	}
 
 	Entity::Entity(Entity * parent) 
@@ -75,6 +82,7 @@ namespace AI {
 		  Messageable(), Container(parent),
 		  localBounds(NULL), globalBounds(NULL),
 	      width(0), height(0) {
+		init();
 	}
 
 	Entity::~Entity() {
@@ -129,11 +137,5 @@ namespace AI {
 		});
 
 		return GetLocalBounds();
-	}
-
-	void Entity::update(double time) {
-		map([&] (Entity e) -> void {
-			e.update(time);
-		});
 	}
 }

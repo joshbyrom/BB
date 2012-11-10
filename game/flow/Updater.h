@@ -27,8 +27,36 @@ namespace FlowControl {
 					onFinished = &onFinish;
 				return *this;
 			}
+
+			Updater withInfiniteRepeats() {
+				infinite = true;
+				return *this;
+			}
+
+			void pause() {
+				if(paused) return;
+
+				paused = true;
+				map([&] (Updater e) -> void {
+					e.pause();
+				});
+
+				QueryPerformanceCounter((LARGE_INTEGER *)&pausedTime);
+			}
+
+			void resume() {
+				if(!paused) return;
+
+				paused = false;
+				map([&] (Updater e) -> void {
+					e.resume();
+				});
+			}
 		private:
 			bool running;
+			bool paused;
+
+			uint64_t pausedTime;
 
 			uint64_t startTime;
 			uint64_t finishTime;
@@ -66,6 +94,8 @@ namespace FlowControl {
 	}
 
 	void Updater::update() {
+		if(paused) return;
+
 		if(!infinite && repeats <= 0) {
 			if(running) {
 				if(onFinished) (*onFinished)();
