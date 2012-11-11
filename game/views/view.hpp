@@ -12,8 +12,6 @@ namespace Views {
 			virtual void DrawRectangle(double x, double y, double z, double width, double height);
 			virtual void DrawCircle(double x, double y, double z, double radius);
 
-			virtual void DrawEntity(
-
 		private:
 			T * t;
 	};
