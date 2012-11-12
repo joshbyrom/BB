@@ -98,9 +98,6 @@
     <ClInclude Include="headers\WindowUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\space\World.hpp">
-      <Filter>Block Buster Code</Filter>
-    </ClInclude>
     <ClInclude Include="headers\resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
@@ -128,9 +125,6 @@
     <ClInclude Include="game\flow\Scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\entities\NamedEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game\flow\Updater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -145,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="game\entities\Identifiable .h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\entities\Identity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\space\Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\space\Level.hpp">
+      <Filter>Block Buster Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

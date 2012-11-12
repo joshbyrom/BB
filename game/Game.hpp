@@ -1,18 +1,27 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "entities\NamedEntity.h"
-#include <string>
+
+#include "space\Level.hpp"
+
 
 namespace Game {
-	using AI::NamedEntity;
+	using Space::Level;
 
-	class Game : public NamedEntity {
+	class Game  {
 	public:
-		Game() : NamedEntity("Block Buster") {}
-		~Game() {}
-	private:
+		Game() {
+		}
 
+		~Game() {
+			delete level;
+		}
+
+		void Update() {
+
+		}
+	private:
+		Level * level;
 	};
 }
 

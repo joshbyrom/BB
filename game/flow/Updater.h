@@ -5,6 +5,7 @@
 
 #include <functional>
 #include <stdint.h>
+#include <map>
 
 namespace FlowControl {
 	using AI::Container;
@@ -27,6 +28,28 @@ namespace FlowControl {
 				RemoveIf([] (Updater up) -> bool {
 					return up.IsFinished();
 				});
+			}
+
+			void RemoveChildByFunction(std::function<void()> fun) {
+				RemoveIf([&] (Updater up) -> bool {
+					std::function<void()> * onUp = up.onUpdate;
+					return onUp == &fun;
+				});
+			}
+
+			void AddHook(std::string id, std::function<void()> fun) {
+				hooks[id] = fun;
+			}
+
+			void RemoveHook(std::string id) {
+				hooks.erase(id);
+			}
+
+			void UpdateHooks() {
+				MapType::const_iterator end = hooks.end();
+				for(MapType::const_iterator it = hooks.begin(); it != end; ++it) {
+					it->second();
+				}
 			}
 
 			Updater  * WithOnStarted(std::function<void()> onStart) {
@@ -106,6 +129,9 @@ namespace FlowControl {
 			std::function<void()> * onStarted;
 			std::function<void()> * onFinished;
 			std::function<void()> * onUpdate;
+
+			typedef std::map<std::string, std::function<void()>> MapType;
+			std::map<std::string, std::function<void()>> hooks;
 	};
 
 	Updater::Updater(std::function<void()> fun, 
@@ -162,6 +188,8 @@ namespace FlowControl {
 			}
 
 			if(onUpdate) (*onUpdate)();
+
+			UpdateHooks();
 
 			UpdateChildren();
 			RemoveFinishedChildren();

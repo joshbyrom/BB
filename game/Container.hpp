@@ -15,8 +15,11 @@ namespace AI {
 					std::copy(in.begin(), in.end(), children.begin());
 			}
 
-			Container(T * parent) : parent(parent) {}
-			~Container() {}
+			Container(Container<T> * parent) : parent(parent) {
+				parent->AddChild(*this);
+			}
+
+			virtual ~Container() {}
 
 			virtual void AddChild(const T& child) {
 				if(contains(child)) return;
@@ -58,7 +61,7 @@ namespace AI {
 			int GetNumberOfChildren() { return children.size(); }
 			T * GetChildAt(int index) const { return children.at(index); }
 
-			T * GetParent() const { return parent; }
+			Container<T> * GetParent() const { return parent; }
 			std::vector<T> GetChildren() const { return children; }
 
 			void Map(std::function<void(T)> fun);
@@ -115,7 +118,7 @@ namespace AI {
 				}
 			}
 		protected:
-			T * parent;
+			Container<T> * parent;
 
 		private:
 			std::vector<T> children;

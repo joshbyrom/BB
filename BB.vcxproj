@@ -72,7 +72,7 @@
   <ItemGroup>
     <ClInclude Include="game\Container.hpp" />
     <ClInclude Include="game\entities\Identifiable .h" />
-    <ClInclude Include="game\entities\NamedEntity.h" />
+    <ClInclude Include="game\entities\Identity.h" />
     <ClInclude Include="game\flow\Scene.hpp" />
     <ClInclude Include="game\flow\Transition.hpp" />
     <ClInclude Include="game\flow\Updater.h" />
@@ -80,6 +80,7 @@
     <ClInclude Include="game\motion\Kinematic.hpp" />
     <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="game\space\Bounds.hpp" />
+    <ClInclude Include="game\space\Cell.h" />
     <ClInclude Include="game\views\GDIView.hpp" />
     <ClInclude Include="game\views\view.hpp" />
     <ClInclude Include="headers\C2DMatrix.h" />
@@ -100,7 +101,7 @@
     <ClInclude Include="headers\utils.h" />
     <ClInclude Include="headers\Vector2D.h" />
     <ClInclude Include="headers\WindowUtils.h" />
-    <ClInclude Include="game\space\World.hpp" />
+    <ClInclude Include="game\space\Level.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="options\Params.ini" />

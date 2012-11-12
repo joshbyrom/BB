@@ -45,7 +45,7 @@ namespace Space {
 		guardedColumn += guardedColumn < 0 ? COLUMNS : 0;
 		guardedRow += guardedRow  < 0 ? ROWS : 0;
 
-		int index = to_index(guardedColumn, guardedRow);
+		int index = ToIndex(guardedColumn, guardedRow);
 		return elems[index];
 	}
 
@@ -56,7 +56,7 @@ namespace Space {
 			for(int r = 0; r < ROWS; ++r) {
 				result = generator(c, r);
 
-				index = to_index(c, r);
+				index = ToIndex(c, r);
 				elems[index] = result;
 			}
 		}
