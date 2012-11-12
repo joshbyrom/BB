@@ -11,6 +11,12 @@ namespace AI {
 		~NamedEntity() {}
 
 		std::string GetName() { return name; }
+		NamedEntity GetChildByName(std::string name) {
+			NamedEntity result = NULL;
+
+
+			return result;
+		}
 	private:
 		std::string name;
 	};

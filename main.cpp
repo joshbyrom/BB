@@ -5,7 +5,6 @@
 
 #include "headers/constants.h"
 #include "headers/utils.h"
-#include "headers/Cgdi.h"
 #include "headers/ParamLoader.h"
 #include "headers/resource.h"
 #include "headers/WindowUtils.h"
@@ -19,7 +18,7 @@
 //------------------------------------------------------------------------
 
 char* g_szApplicationName = "Block Buster";
-char*	g_szWindowClassName = "MyWindowClass";
+char* g_szWindowClassName = "MyWindowClass";
 
 //GameWorld* g_GameWorld;
 Game::Game game;
@@ -158,11 +157,11 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
                 WHITENESS);
 
          
-         gdi->StartDrawing(hdcBackBuffer);
+         //gdi->StartDrawing(hdcBackBuffer);
          
-         //g_GameWorld->Render();
+		 gameView.Render(hdcBackBuffer);
 
-         gdi->StopDrawing(hdcBackBuffer);
+         //gdi->StopDrawing(hdcBackBuffer);
 
         
 

@@ -12,6 +12,7 @@ namespace FlowControl {
 	class Updater : public Container<Updater> {
 		public:
 			Updater(std::function<void()> fun, uint64_t delay, uint64_t duration, uint16_t repeats);
+			Updater(const Updater& copy);
 			~Updater();
 
 			void Update();
@@ -117,6 +118,23 @@ namespace FlowControl {
 		
 		QueryPerformanceCounter((LARGE_INTEGER *)&now);
 		SetNextStartTime(now, delay);
+	}
+
+	Updater::Updater(const Updater& other) 
+		: running(other.running),
+		  paused(other.paused),
+		  finished(other.finished),
+		  pausedTime(other.pausedTime),
+		  startTime(other.startTime),
+		  finishTime(other.finishTime),
+		  delay(other.delay),
+		  duration(other.duration),
+		  repeats(other.repeats),
+		  now(other.now),
+		  lastUpdate(other.lastUpdate),
+		  infinite(other.infinite)
+	{
+
 	}
 
 	Updater::~Updater() {

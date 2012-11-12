@@ -32,7 +32,10 @@ namespace Views {
 			}
 
 			virtual void Render(const HDC& surface) {
+				gdi->StartDrawing(surface);
+         
 
+				gdi->StopDrawing(surface);
 			}
 		private:
 			const Game::Game * game;

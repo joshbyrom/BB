@@ -13,6 +13,8 @@
 
 #include "../../headers/Vector2D.h"
 
+#include "Identifiable .h"
+
 #include <math.h>
 
 namespace AI {
@@ -25,7 +27,8 @@ namespace AI {
 	using Space::Bounds;
 
 	class Entity : public Messageable<MessageType, Entity>, 
-		           public Container<Entity> {
+		           public Container<Entity>,
+				   public Identifiable {
 		public:
 			Entity();
 			Entity(Entity * parent);
@@ -38,8 +41,8 @@ namespace AI {
 				return true;
 			}
 
-			Bounds<Entity, Vector2D> GetLocalBounds() const;
-			Bounds<Entity, Vector2D> GetGlobalBounds() const;
+			Bounds<Vector2D> GetLocalBounds() const;
+			Bounds<Vector2D> GetGlobalBounds() const;
 
 			Updater GetUpdater() const;
 			Kinematic<Vector2D> GetKinematic() const;
@@ -62,8 +65,8 @@ namespace AI {
 
 			bool operator==(const Entity& rhs)const
 			{
-				// add more here
-				return GetKinematic() == rhs.GetKinematic() &&
+				return Identifiable::operator==(rhs) &&
+					   GetKinematic() == rhs.GetKinematic() &&
 					   GetLocalBounds() == rhs.GetLocalBounds() &&
 					   GetGlobalBounds() == rhs.GetGlobalBounds() &&
 					   Container::operator==(rhs);
@@ -84,8 +87,8 @@ namespace AI {
 			double height;
 
 			Kinematic<Vector2D> * kinematic;
-			Bounds<Entity, Vector2D> * localBounds;
-			Bounds<Entity, Vector2D> * globalBounds;
+			Bounds<Vector2D> * localBounds;
+			Bounds<Vector2D> * globalBounds;
 
 			Updater * updater;
 
@@ -95,15 +98,13 @@ namespace AI {
 	void Entity::init() {
 		updater = (new Updater([this] () {
 			kinematic->Update((double) updater->Elapsed());
+
+			localBounds->Update(GetLocalPosition(), width, height);
+			globalBounds->Update(GetGlobalPosition(), GetWidth(), GetHeight());
 		}, 0, 0, 1))->WithInfiniteRepeats();
 
-		localBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
-			return this->GetLocalPosition();
-		});
-
-		globalBounds = new Bounds<Entity, Vector2D>(*this, [this] () -> Vector2D {
-			return this->GetGlobalPosition();
-		});
+		localBounds = new Bounds<Vector2D>();
+		globalBounds = new Bounds<Vector2D>();
 
 		if(parent) {
 			parent->AddChild(*this);
@@ -159,11 +160,11 @@ namespace AI {
 		});
 	}
 
-	Bounds<Entity, Vector2D> Entity::GetLocalBounds() const {
+	Bounds<Vector2D> Entity::GetLocalBounds() const {
 		return *localBounds;
 	}
 
-	Bounds<Entity, Vector2D> Entity::GetGlobalBounds() const {
+	Bounds<Vector2D> Entity::GetGlobalBounds() const {
 		return *globalBounds;
 	}
 

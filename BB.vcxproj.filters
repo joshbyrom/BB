@@ -143,6 +143,9 @@
     <ClInclude Include="game\views\GDIView.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\entities\Identifiable .h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="options\Params.ini">

@@ -9,6 +9,12 @@ namespace AI {
 	class Container {
 		public:
 			Container() : parent(NULL) {}
+			Container(const Container& copy)
+				: parent(copy.GetParent()) {
+					std::vector<T> in = copy.GetChildren();
+					std::copy(in.begin(), in.end(), children.begin());
+			}
+
 			Container(T * parent) : parent(parent) {}
 			~Container() {}
 

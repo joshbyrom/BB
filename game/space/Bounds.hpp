@@ -4,59 +4,79 @@
 #include <functional>
 
 namespace Space {
-	// T is required to have
-	//  function :
-	//		GetWidth
-	//		GetHeight
-	//	members :
-	//		x
-	//		y
-
-	template<typename T, typename K>
+	template<typename T>
 	class Bounds {
 		public:
-			Bounds(const T& t, std::function<K()> fun);  // TODO sense changes in T to cache fun() results
+			Bounds();
+			Bounds(Bounds<T>& copy);
 			~Bounds() {}
 
-			K GetTopLeft() const { return position(); }
-			double GetWidth() const  { return t->GetWidth(); }
-			double GetHeight() const { return t->GetHeight(); }
-			double GetRadius() const { 
-				double width = GetWidth();
-				double height = GetHeight();
+			void Update(const double& x, const double& y, const double& width, const double& height);
+			void Update(const T& xy, const double& width, const double& height);
 
+			T TopLeft() const { return T(x, y); }
+			double Width() const  { return width; }
+			double Height() const { return height; }
+			double Radius() const { 
 				return width > height ? width : height;
 			}
 
-			double Left() const   { return position().x; }
-			double Right() const  { return position().x + GetWidth(); }
-			double Top() const    { return position().y; }
-			double Bottom() const { return position().y + GetHeight(); }
+			double Left() const   { return x; }
+			double Right() const  { return x + Width(); }
+			double Top() const    { return y; }
+			double Bottom() const { y + Height(); }
 
-			K GetCenter() { return K(Left() + GetWidth() * 0.5, Top() + GetHeight() * 0.5); }
-			T GetBoundedObject() const { return *t; }
+			T GetCenter() { return T(Left() + Width() * 0.5, Top() + Height() * 0.5); }
 
-			bool operator==(const Bounds<T, K>& rhs)const
+			bool operator==(const Bounds<T>& rhs)const
 			{
-				return *t == rhs.GetBoundedObject() &&
-					Left() == rhs.Left() && Top() == rhs.Top();
+				return Left() == rhs.Left() && Top() == rhs.Top() &&
+					   Width() == rhs.Width() && Height() == rhs.Height();
 			}
 
-			bool operator!=(const Bounds<T, K>& rhs)const
+			bool operator!=(const Bounds<T>& rhs)const
 			{
-				return T != rhs.GetBoundedObject() &&
-					Left() != rhs.Left() && Top() != rhs.Top();
+				return Left() != rhs.Left() && Top() != rhs.Top() &&
+					   Width() != rhs.Width() && Height() != rhs.Height();
 			}
 		private:
-			const T * t;
-
-			std::function<K()> position;
+			double x, y, width, height;
 	};
 
-	template<typename T, typename K>
-	Bounds<T, K>::Bounds(const T& t, std::function<K()> fun) 
-		: t(&t), position(fun) {
+	template<typename T>
+	Bounds<T>::Bounds() 
+		: x(0), y(0), width(0), height(0) {
 
+	}
+
+	template<typename T>
+	Bounds<T>::Bounds(Bounds<T>& copy) 
+		: x(copy.Left()), 
+		  y(copy.Top()), 
+		  width(copy.Width()), 
+		  height(copy.Height()) {
+
+	}
+
+	template<typename T>
+	void Bounds<T>::Update(const double& x, 
+		                   const double& y, 
+						   const double& width, 
+						   const double& height) {
+		this->x = x;
+		this->y = y;
+		this->width = width;
+		this->height = height;
+	}
+
+	template<typename T>
+	void Bounds<T>::Update(const T& xy, 
+						   const double& width, 
+						   const double& height) {
+		this->x = xy.x;
+		this->y = xy.y;
+		this->width = width;
+		this->height = height;
 	}
 }
 

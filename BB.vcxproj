@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\Container.hpp" />
+    <ClInclude Include="game\entities\Identifiable .h" />
     <ClInclude Include="game\entities\NamedEntity.h" />
     <ClInclude Include="game\flow\Scene.hpp" />
     <ClInclude Include="game\flow\Transition.hpp" />
