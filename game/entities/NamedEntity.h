@@ -14,6 +14,9 @@ namespace AI {
 		NamedEntity GetChildByName(std::string name) {
 			NamedEntity result = NULL;
 
+			Map([&] (Entity entity) {
+
+			});
 
 			return result;
 		}

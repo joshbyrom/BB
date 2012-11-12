@@ -27,13 +27,12 @@ namespace AI {
 			// add more here
 			return this->GetID() == rhs.GetID();
 		}
-	protected:
+	private:
 		long GenerateID() {
 			static long nextID = 1;
 			return InterlockedIncrement(&nextID);
 		}
 
-	private:
 		long id;
 	};
 }

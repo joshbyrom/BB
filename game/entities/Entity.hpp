@@ -82,6 +82,18 @@ namespace AI {
 				updater->RemoveChild(e.GetUpdater());
 			}
 
+			Entity GetChildByID(const UINT& id) {
+				Entity result = NULL;
+
+				Map([&] (Entity entity) {
+					if(entity.GetID() == id) {
+						result = entity;
+						return;
+					}
+				});
+
+				return result;
+			}
 		protected:
 			double width;
 			double height;
