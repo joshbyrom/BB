@@ -2,7 +2,9 @@
 #define VIEW_HPP
 
 namespace Views {
-	template<typename SURFACE, typename IMAGE_TYPE, typename VECTOR_TYPE>
+	template<typename SURFACE, 
+		     typename IMAGE_TYPE, 
+			 typename VECTOR_TYPE>
 	class View {
 		public:
 			View() {}

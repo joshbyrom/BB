@@ -23,7 +23,7 @@ namespace AI {
 				T * t = NULL;
 				for(unsigned int i = 0; i < children.size(); ++i) {
 					t = &children[i];
-					if(&(*t) != &child) {
+					if(*t != child) {
 						copy.push_back(*t);
 					}
 				}
@@ -65,7 +65,7 @@ namespace AI {
 				T * t = NULL;
 				for(unsigned int i = 0; i < children.size(); ++i) {
 					t = &children[i];
-					if(&(*t) != &child) {
+					if(*t != child) {
 						copy.push_back(*t);
 					} else {
 						copy.push_back(*to);
@@ -87,6 +87,26 @@ namespace AI {
 					std::equal(children.begin(), children.end(), rhs.GetChildren().begin(), [] (T t1, T t2) {
 						return t1 == t2;
 					});
+			}
+
+			int GetChildIndex(const T& child) {
+				T * t = NULL;
+				for(unsigned int i = 0; i < children.size(); ++i) {
+					t = &children[i];
+					if(*t == child) {
+						return i;
+					}
+				}
+
+				return -1;
+			}
+
+			UINT ZOrder() const {
+				if(parent) {
+					return parent->GetChildIndex(this) + parent->ZOrder();
+				} else {
+					return 0;
+				}
 			}
 		protected:
 			T * parent;
