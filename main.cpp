@@ -5,7 +5,6 @@
 
 #include "headers/constants.h"
 #include "headers/utils.h"
-#include "headers/PrecisionTimer.h"
 #include "headers/Cgdi.h"
 #include "headers/ParamLoader.h"
 #include "headers/resource.h"
@@ -13,6 +12,8 @@
 
 #include "game/entities/Entity.hpp"
 #include "game/Game.hpp"
+#include "game/views/GDIView.hpp"
+
 //--------------------------------- Globals ------------------------------
 //
 //------------------------------------------------------------------------
@@ -21,8 +22,8 @@ char* g_szApplicationName = "Block Buster";
 char*	g_szWindowClassName = "MyWindowClass";
 
 //GameWorld* g_GameWorld;
-Game::Game<int> game;
-
+Game::Game game;
+Views::GDIView gameView(game);
 
 //---------------------------- WindowProc ---------------------------------
 //	
@@ -265,14 +266,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
   // Enter the message loop
   bool bDone = false;
-
-  //create a timer
-  PrecisionTimer timer;
-
-  timer.SmoothUpdatesOn();
-
-  //start the timer
-  timer.Start();
 
   MSG msg;
 

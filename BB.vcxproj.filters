@@ -45,9 +45,6 @@
     <ClCompile Include="source\iniFileLoaderBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\PrecisionTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Vector2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,9 +82,6 @@
     </ClInclude>
     <ClInclude Include="game\messaging\MessageDispatcher.hpp">
       <Filter>Block Buster Code\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\PrecisionTimer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Transformations.h">
       <Filter>Header Files</Filter>
@@ -144,6 +138,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\flow\Transition.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\views\GDIView.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -66,7 +66,6 @@
     <ClCompile Include="source\iniFileLoaderBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\ParamLoader.cpp" />
-    <ClCompile Include="source\PrecisionTimer.cpp" />
     <ClCompile Include="source\Vector2D.cpp" />
     <ClCompile Include="source\WindowUtils.cpp" />
   </ItemGroup>
@@ -80,6 +79,7 @@
     <ClInclude Include="game\motion\Kinematic.hpp" />
     <ClInclude Include="game\motion\Movement.hpp" />
     <ClInclude Include="game\space\Bounds.hpp" />
+    <ClInclude Include="game\views\GDIView.hpp" />
     <ClInclude Include="game\views\view.hpp" />
     <ClInclude Include="headers\C2DMatrix.h" />
     <ClInclude Include="headers\Cgdi.h" />
@@ -92,7 +92,6 @@
     <ClInclude Include="game\messaging\MessageDispatcher.hpp" />
     <ClInclude Include="game\messaging\MessageTypes.h" />
     <ClInclude Include="headers\ParamLoader.h" />
-    <ClInclude Include="headers\PrecisionTimer.h" />
     <ClInclude Include="headers\resource.h" />
     <ClInclude Include="game\entities\Entity.hpp" />
     <ClInclude Include="headers\Stream_Utility_Functions.h" />

@@ -7,7 +7,6 @@
 namespace Game {
 	using AI::NamedEntity;
 
-	template<typename T>
 	class Game : public NamedEntity {
 	public:
 		Game() : NamedEntity("Block Buster") {}
