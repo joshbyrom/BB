@@ -2,24 +2,19 @@
 #define VIEW_HPP
 
 namespace Views {
-	template<typename T, typename K>
+	template<typename SURFACE, typename IMAGE_TYPE, typename VECTOR_TYPE>
 	class View {
 		public:
-			View(const T& t);
-			~View();
+			View() {}
+			~View() {}
 
-			virtual void DrawImage(const K& k, double x, double y, double z, double alpha);
-			virtual void DrawRectangle(double x, double y, double z, double width, double height);
-			virtual void DrawCircle(double x, double y, double z, double radius);
+			virtual void DrawImage(const IMAGE_TYPE& image, VECTOR_TYPE vector, double alpha);
+			virtual void DrawRectangle(VECTOR_TYPE vector, double width, double height);
+			virtual void DrawCircle(VECTOR_TYPE vector, double radius);
+			virtual void DrawLine(VECTOR_TYPE start, VECTOR_TYPE end, double width);
 
-		private:
-			T * t;
+			virtual void Render(const SURFACE& surface);
 	};
-
-	template<typename T>
-	View<T>::View(const T& t) {
-		this->t = t;
-	}
 }
 
 #endif
