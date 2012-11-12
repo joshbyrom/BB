@@ -32,30 +32,34 @@ namespace Space {
 		}
 
 		void AddEntityToLevel(AI::Entity& e) {
-			e.GetUpdater().AddHook("KeepInCorrectCell", [&] () -> void {
-				Cell cell = CellAtXY(e);
-				
-			});
+			Cell cell = CellAtXY(e);
+			cell.Add(e);
 		}
 
 		void RemoveEntity(AI::Entity& e) {
-			//e.GetCell().Remove(e);
-			e.GetUpdater().RemoveHook("KeepInCorrectCell");
+			Cell cell = CellAtXY(e);
+			cell.Remove(e);
 		}
 
 		void Update() {
-			MapToEntities([&] (AI::Entity& e) -> void {
-				e.GetUpdater().Update();	
+			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
+				Cell old = CellAtXY(e);
+				e.GetUpdater().Update();
+				Cell current = CellAtXY(e);
+
+				if(old != current) {
+					old.Remove(e);
+					current.Add(e);
+				}
 			});
 		}
 
-		void MapToCells(std::function<void(Cell& cell)> fun) {
-			for_each(cells.begin(), cells.end(), fun);
-		}
-
-		void MapToEntities(std::function<void(AI::Entity& e)> fun) {
-			MapToCells([&] (Cell& cell) -> void {
-				for_each(cell.GetEntities().begin(), cell.GetEntities().end(), fun);
+		void MapToEntities(std::function<void(Cell& cell, AI::Entity& e)> fun) {
+			for_each(cells.begin(), cells.end(), [&] (Cell& cell) -> void {
+				for_each(cell.GetEntities().begin(), cell.GetEntities().end(),
+					[&] (AI::Entity& e) ->void {
+						fun(cell, e);
+				});
 			});
 		}
 

@@ -2,6 +2,9 @@
 #define CELL_H
 
 #include "../entities/Entity.hpp"
+#include "../../headers/Vector2D.h"
+
+#include <algorithm>
 
 namespace Space {
 	class Cell {
@@ -28,6 +31,22 @@ namespace Space {
 				}
 
 				ents = copy;
+			}
+
+			bool operator==(const Cell& rhs)const
+			{
+				return column == rhs.column &&
+					   row == rhs.row &&
+					   width == rhs.width &&
+					   height == rhs.height;
+			}
+
+			bool operator!=(const Cell& rhs)const
+			{
+				return column != rhs.column &&
+					   row != rhs.row &&
+					   width != rhs.width &&
+					   height != rhs.height;
 			}
 		private:
 			std::vector<AI::Entity> ents;

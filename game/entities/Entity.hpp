@@ -77,7 +77,7 @@ namespace AI {
 			kinematic->Update((double) updater->Elapsed());
 
 			bounds->Update(GetPosition(), width, height);
-		}, 0, 0, 1))->WithInfiniteRepeats();
+		}, 250, 0, 1))->WithInfiniteRepeats();
 	}
 	
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),
