@@ -137,13 +137,13 @@
     <ClInclude Include="game\entities\NamedEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\flow\Transition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game\flow\Updater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\views\view.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\flow\Transition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

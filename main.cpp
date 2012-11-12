@@ -297,7 +297,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
     {
       //update
       //g_GameWorld->Update(timer.TimeElapsed());
-      
+	  game.GetUpdater().Update();
+
       //render
       RedrawWindow(hWnd, false);
 

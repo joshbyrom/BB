@@ -74,7 +74,7 @@
     <ClInclude Include="game\Container.hpp" />
     <ClInclude Include="game\entities\NamedEntity.h" />
     <ClInclude Include="game\flow\Scene.hpp" />
-    <ClInclude Include="game\flow\Transition.h" />
+    <ClInclude Include="game\flow\Transition.hpp" />
     <ClInclude Include="game\flow\Updater.h" />
     <ClInclude Include="game\Game.hpp" />
     <ClInclude Include="game\motion\Kinematic.hpp" />
