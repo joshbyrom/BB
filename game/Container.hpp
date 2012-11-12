@@ -121,7 +121,7 @@ namespace AI {
 
 	template<typename T>
 	void Container<T>::Map(std::function<void(T)> fun) {
-		for_each(children.begin(), children.end(), [] (T t) {
+		for_each(children.begin(), children.end(), [&] (T t) {
 				t.Map(fun);
 				fun(t);
 		});

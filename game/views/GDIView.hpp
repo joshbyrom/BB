@@ -12,45 +12,39 @@
 namespace Views {
 	class GDIView : public View<HDC, HBITMAP, Vector2D> {
 		public:
-			GDIView(Game::Game game);
+			GDIView(const Game::Game& game);
 			~GDIView();
 
-			virtual void DrawImage(const HBITMAP& image, Vector2D vector, double alpha) override;
-			virtual void DrawRectangle(Vector2D vector, double width, double height) override;
-			virtual void DrawCircle(Vector2D vector, double radius) override;
-			virtual void DrawLine(Vector2D start, Vector2D end, double width) override;
+			virtual void DrawImage(const HBITMAP& image, const Vector2D& vector, double alpha) const {
 
-			virtual void Render(const HDC& surface);
+			}
+
+			virtual void DrawRectangle(const Vector2D& vector, double width, double height) const {
+
+			}
+
+			virtual void DrawCircle(const Vector2D& vector, double radius) const {
+
+			}
+
+			virtual void DrawLine(const Vector2D& start, const Vector2D& end, double width) const {
+
+			}
+
+			virtual void Render(const HDC& surface) {
+
+			}
 		private:
-			Game::Game * game;
+			const Game::Game * game;
+			HDC * current;
 	};
 
-	GDIView::GDIView(Game::Game game) 
-		: game(&game) {
+	GDIView::GDIView(const Game::Game& game) 
+		: game(&game), View<HDC, HBITMAP, Vector2D>() {
 
 	}
 
 	GDIView::~GDIView() {
-
-	}
-
-	void GDIView::DrawImage(const HBITMAP& image, Vector2D vector, double alpha) override {
-
-	}
-
-	void GDIView::DrawRectangle(Vector2D vector, double width, double height) override {
-
-	}
-
-	void GDIView::DrawCircle(Vector2D vector, double radius) override {
-
-	}
-
-	void GDIView::DrawLine(Vector2D start, Vector2D end, double width) override {
-
-	}
-
-	void Render(const HDC& surface) {
 
 	}
 }

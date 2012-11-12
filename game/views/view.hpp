@@ -10,12 +10,12 @@ namespace Views {
 			View() {}
 			~View() {}
 
-			virtual void DrawImage(const IMAGE_TYPE& image, VECTOR_TYPE vector, double alpha);
-			virtual void DrawRectangle(VECTOR_TYPE vector, double width, double height);
-			virtual void DrawCircle(VECTOR_TYPE vector, double radius);
-			virtual void DrawLine(VECTOR_TYPE start, VECTOR_TYPE end, double width);
+			virtual void DrawImage(const IMAGE_TYPE& image, const VECTOR_TYPE& vector, double alpha) const = 0;
+			virtual void DrawRectangle(const VECTOR_TYPE& vector, double width, double height) const = 0;
+			virtual void DrawCircle(const VECTOR_TYPE& vector, double radius) const = 0;
+			virtual void DrawLine(const VECTOR_TYPE& start, const VECTOR_TYPE& end, double width) const = 0;
 
-			virtual void Render(const SURFACE& surface);
+			virtual void Render(const SURFACE& surface) = 0;
 	};
 }
 
