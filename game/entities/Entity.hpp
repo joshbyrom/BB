@@ -84,7 +84,7 @@ namespace AI {
 	Entity::Entity() : kinematic(new Kinematic<Vector2D>()),
 					   Messageable(), 
 					   bounds(new Bounds<Vector2D>()), 
-	                   width(0), height(0), updater(NULL) {
+	                   width(10), height(10), updater(NULL) {
 		init();
 	}
 
@@ -92,6 +92,9 @@ namespace AI {
 		kinematic = new Kinematic<Vector2D>(*other.kinematic);
 		bounds = new Bounds<Vector2D>(*other.bounds);
 		updater = new Updater(*other.updater);
+
+		width = other.width;
+		height = other.height;
 	}
 	
 	Entity::~Entity() {

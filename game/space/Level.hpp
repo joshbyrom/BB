@@ -2,9 +2,12 @@
 #define LEVEL_H
 
 
+#include "../../headers/Vector2D.h"
+#include "../space/Bounds.hpp"
 #include "../entities/Entity.hpp"
 #include "Grid.hpp"
 #include "Cell.h"
+
 #include "../../headers/constants.h"
 
 #include <functional>
@@ -14,11 +17,14 @@
 namespace Space {
 	using Space::Grid;
 	using Space::Cell;
+	using Space::Bounds;
 
 	class Level {
 	public:
 		Level(std::string name, double width, double height)
-			: width(width), height(height), grid(new Grid<Cell> (GRID_COLUMNS, GRID_ROWS)) {
+			: width(width), height(height), 
+			  grid(new Grid<Cell> (GRID_COLUMNS, GRID_ROWS)),
+		      position(Vector2D()), bounds(new Bounds<Vector2D>()){
 				cellWidth = width / grid->GetNumberOfColumns();
 				cellHeight = height / grid->GetNumberOfRows();
 				grid->Init([&] (int column, int row) -> Cell {
@@ -28,8 +34,21 @@ namespace Space {
 				});
 		}
 
+		Level(std::string name, double x, double y, double width, double height)
+			: width(width), height(height), 
+			  grid(new Grid<Cell> (GRID_COLUMNS, GRID_ROWS)),
+		      position(Vector2D(x, y)), bounds(new Bounds<Vector2D>()){
+				cellWidth = width / grid->GetNumberOfColumns();
+				cellHeight = height / grid->GetNumberOfRows();
+				grid->Init([&] (int column, int row) -> Cell {
+					Cell cell(column, row, cellWidth, cellHeight);
+					cells.push_back(cell);
+					return cell;
+				});
+		}
 		~Level() {
 			delete grid;
+			delete bounds;
 		}
 
 		void AddEntityToLevel(AI::Entity& e) {
@@ -43,6 +62,8 @@ namespace Space {
 		}
 
 		void Update() {
+			bounds->Update(position, width, height);
+
 			MapToEntities([&] (Cell * cell, AI::Entity * e) -> void {
 				Cell old = CellAtXY(*e);
 				e->GetUpdater().Update();
@@ -90,8 +111,12 @@ namespace Space {
 		}
 
 		Grid<Cell> * GetGrid() { return grid; }
+		Vector2D GetPosition() const { return position; }
 
+		Bounds<Vector2D> * GetBounds() { return bounds; }
 	private:
+		Vector2D position;
+
 		double width;
 		double height;
 
@@ -100,7 +125,9 @@ namespace Space {
 		std::string name;
 
 		std::vector<Cell> cells;
+
 		Grid<Cell>  * grid;
+		Bounds<Vector2D>  * bounds;
 	};
 }
 

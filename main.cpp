@@ -55,7 +55,8 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //accordingly
 			   RECT rect;
 
-			   GetClientRect(hwnd, &rect);
+			   GetWindowRect(hwnd, &rect);
+			  // GetClientRect(hwnd, &rect);
 
 			   cxClient = rect.right;
 			   cyClient = rect.bottom;
@@ -258,6 +259,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
     MessageBox(NULL, "CreateWindowEx Failed!", "Error!", 0);
   }
 
+  SetWindowLong(hWnd, GWL_STYLE, 0);
      
   //make the window visible
   ShowWindow (hWnd, iCmdShow);

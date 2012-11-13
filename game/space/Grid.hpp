@@ -16,8 +16,8 @@ namespace Space {
 
 			void Init(std::function<T(UINT, UINT)> generator);
 
-			UINT GetNumberOfColumns() { return columns; }
-			UINT GetNumberOfRows() { return rows; }
+			UINT GetNumberOfColumns() const { return columns; }
+			UINT GetNumberOfRows() const { return rows; }
 
 		private:
 			T * elems;

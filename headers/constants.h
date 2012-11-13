@@ -1,8 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-const int WINDOW_WIDTH  = 600;
-const int WINDOW_HEIGHT = 800;
+const double WINDOW_WIDTH  = 600.;
+const double WINDOW_HEIGHT = 800.;
 
 const double SMALEST_DELAY = 0.25;
 

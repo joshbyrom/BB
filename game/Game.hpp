@@ -16,13 +16,14 @@ namespace Game {
 	class Game  {
 	public:
 		Game() {
-			double levelWidth = static_cast<double>(WINDOW_WIDTH);
-			double levelHeight = static_cast<double>(WINDOW_HEIGHT);
+			double levelWidth = static_cast<double>(WINDOW_WIDTH - 2);
+			double levelHeight = static_cast<double>(WINDOW_HEIGHT - 2);
 
 			Entity e;
 			e.GetKinematic().SetPosition(levelWidth * 0.5, levelHeight * 0.5);
 
-			level = new Level("Test Level", levelWidth, levelHeight);
+			level = new Level("Test Level", 1., 1., levelWidth, levelHeight);
+
 			level->AddEntityToLevel(e);
 		}
 

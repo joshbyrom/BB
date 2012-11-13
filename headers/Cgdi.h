@@ -170,6 +170,13 @@ public:
   void OrangeBrush() {if(m_hdc)SelectObject(m_hdc, m_OrangeBrush);}
 
 
+  void Fontsize(int size) {
+	  if(m_hdc) {
+		  HFONT hFont=CreateFont(size,0,0,0,FW_BOLD,0,0,0,0,0,0,2,0,"SYSTEM_FIXED_FONT");
+		  SelectObject(m_hdc, hFont);
+	  }
+  }
+
 
   //ALWAYS call this before drawing
   void StartDrawing(HDC hdc)
