@@ -54,13 +54,13 @@ namespace FlowControl {
 
 			Updater  * WithOnStarted(std::function<void()> onStart) {
 				if(!running) 
-					onStarted = &onStart;
+					onStarted = new std::function<void()>(onStart);
 				return this;
 			}
 
 			Updater * WithOnFinished(std::function<void()> onFinish) {
 				if(!running)
-					onFinished = &onFinish;
+					onFinished = new std::function<void()>(onFinish);
 				return this;
 			}
 
@@ -139,9 +139,11 @@ namespace FlowControl {
 							  uint64_t duration, 
 							  uint16_t repeats)
 		: delay(delay), duration(max(11,duration)), repeats(repeats), running(false),
-	      onStarted(NULL), onFinished(NULL), onUpdate(&fun), infinite(false) {
+	      onStarted(NULL), onFinished(NULL), 
+		  onUpdate(new std::function<void()>(fun)), infinite(false) {
 
-		
+	    onStarted = new std::function<void()>([](){});
+		onFinished = new std::function<void()>([](){});
 		QueryPerformanceCounter((LARGE_INTEGER *)&now);
 		SetNextStartTime(now, delay);
 	}
@@ -161,10 +163,16 @@ namespace FlowControl {
 		  infinite(other.infinite)
 	{
 		hooks.insert(other.hooks.begin(), other.hooks.end());
+
+		onUpdate = new std::function<void()>(*other.onUpdate);
+		onStarted = new std::function<void()>(*other.onStarted);
+		onFinished = new std::function<void()>(*other.onFinished);
 	}
 
 	Updater::~Updater() {
-
+		delete onUpdate;
+		delete onStarted;
+		delete onFinished;
 	}
 
 	void Updater::Update() {
