@@ -6,13 +6,14 @@ namespace Motion {
 	class Movement {
 		public:
 			Movement();
-			~Movement();
+			virtual ~Movement();
 
 			virtual void ApplyForce(const T& force) = 0;
 			virtual void Update(const K& time) = 0;
 
 			T GetPosition() const;
 			bool SetPosition(const T& newPosition);
+			bool SetPosition(const double& x, const double& y);
 		protected:
 			T * position;
 	};
@@ -38,6 +39,15 @@ namespace Motion {
 		if(position == newPosition) return false;
 
 		position = newPosition;
+		return true;
+	}
+
+	template<typename T, typename K>
+	bool Movement<T, K>::SetPosition(const double& x, const double& y) {
+		if(position->x == x && position->y == y) return false;
+
+		position->x = x;
+		position->y = y;
 		return true;
 	}
 }

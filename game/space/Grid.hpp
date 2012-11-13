@@ -4,56 +4,71 @@
 #include <functional>
 
 namespace Space {
-	template <typename T, int COLUMNS, int ROWS>
+	template <typename T>
 	class Grid {
 		public:
-			Grid();
+			Grid(UINT c, UINT r);
+			Grid(const Grid& copy);
+
 			~Grid();
 
 			T Get(int column, int row) const;
 
-			void Init(std::function<T(int, int)> generator);
+			void Init(std::function<T(UINT, UINT)> generator);
 
-			int GetNumberOfColumns() { return COLUMNS; }
-			int GetNumberOfRows() { return ROWS; }
+			UINT GetNumberOfColumns() { return columns; }
+			UINT GetNumberOfRows() { return rows; }
 
 		private:
 			T * elems;
+			UINT columns, rows;
 
-			int ToIndex(const int column, const int row) const { return column * ROWS + row; }
+			UINT ToIndex(const int column, const int row) const { return column * rows + row; }
 	};
 
-	template <typename T, int COLUMNS, int ROWS>
-	Grid<T, COLUMNS, ROWS>::Grid() 
-		: elems(new T[COLUMNS * ROWS])
+	template <typename T>
+	Grid<T>::Grid(UINT c, UINT r) 
+		: elems(new T[c * r]), columns(c), rows(r)
 	{
 
 	}
 
-	template <typename T, int COLUMNS, int ROWS>
-	Grid<T, COLUMNS, ROWS>::~Grid() 
+	template <typename T>
+	Grid<T>::Grid(const Grid<T>& copy)  {
+		elems = new T[copy.columns * copy.rows];
+
+		columns = copy.columns;
+		rows = copy.rows;
+
+		this->Init([&] (UINT column, UINT row) -> T {
+			return copy.Get(column, row);
+		});
+	}
+
+	template <typename T>
+	Grid<T>::~Grid() 
 	{
 		delete [] elems;
 		elems = NULL;
 	}
 
-	template <typename T, int COLUMNS, int ROWS>
-	T Grid<T, COLUMNS, ROWS>::Get(int columns, int rows) const {
-		int guardedColumn = columns%COLUMNS;
-		int guardedRow = rows%ROWS;
+	template <typename T>
+	T Grid<T>::Get(int column, int row) const {
+		int guardedColumn = column%columns;
+		int guardedRow = row%rows;
 
-		guardedColumn += guardedColumn < 0 ? COLUMNS : 0;
-		guardedRow += guardedRow  < 0 ? ROWS : 0;
+		guardedColumn += guardedColumn < 0 ? columns : 0;
+		guardedRow += guardedRow  < 0 ? rows : 0;
 
-		int index = ToIndex(guardedColumn, guardedRow);
+		UINT index = ToIndex(guardedColumn, guardedRow);
 		return elems[index];
 	}
 
-	template <typename T, int COLUMNS, int ROWS>
-	void Grid<T, COLUMNS, ROWS>::Init(std::function<T(int, int)> generator) {
-		T result; int index;
-		for(int c = 0; c < COLUMNS; ++c) {
-			for(int r = 0; r < ROWS; ++r) {
+	template <typename T>
+	void Grid<T>::Init(std::function<T(UINT, UINT)> generator) {
+		T result; UINT index;
+		for(UINT c = 0; c < columns; ++c) {
+			for(UINT r = 0; r < rows; ++r) {
 				result = generator(c, r);
 
 				index = ToIndex(c, r);

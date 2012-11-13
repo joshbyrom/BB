@@ -12,7 +12,7 @@ namespace Motion {
 				this->maxForce = 0;	 // TODO
 			}
 
-			~Kinematic() {
+			virtual ~Kinematic() {
 				delete velocity;
 				delete acceleration;
 			}

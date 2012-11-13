@@ -18,7 +18,7 @@ namespace Space {
 	class Level {
 	public:
 		Level(std::string name, double width, double height)
-			: width(width), height(height), grid(new Grid<Cell, GRID_COLUMNS, GRID_ROWS>()) {
+			: width(width), height(height), grid(new Grid<Cell> (GRID_COLUMNS, GRID_ROWS)) {
 				cellWidth = width / grid->GetNumberOfColumns();
 				cellHeight = height / grid->GetNumberOfRows();
 				grid->Init([&] (int column, int row) -> Cell {
@@ -43,37 +43,37 @@ namespace Space {
 		}
 
 		void Update() {
-			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
-				Cell old = CellAtXY(e);
-				e.GetUpdater().Update();
-				Cell current = CellAtXY(e);
+			MapToEntities([&] (Cell * cell, AI::Entity * e) -> void {
+				Cell old = CellAtXY(*e);
+				e->GetUpdater().Update();
+				Cell current = CellAtXY(*e);
 
 				if(old != current) {
-					old.Remove(e);
-					current.Add(e);
+					old.Remove(*e);
+					current.Add(*e);
 				}
 			});
 		}
 
 		void Pause() {
-			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
-				e.GetUpdater().Pause();
+			MapToEntities([&] (Cell * cell, AI::Entity * e) -> void {
+				e->GetUpdater().Pause();
 			});
 		}
 
 		void Resume() {
-			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
-				e.GetUpdater().Resume();
+			MapToEntities([&] (Cell * cell, AI::Entity * e) -> void {
+				e->GetUpdater().Resume();
 			});
 		}
 
-		void MapToEntities(std::function<void(Cell& cell, AI::Entity& e)> fun) {
+		void MapToEntities(std::function<void(Cell * cell, AI::Entity * e)> fun) {
 			std::vector<AI::Entity> entities;
 			for_each(cells.begin(), cells.end(), [&] (Cell& cell) -> void {
 				entities = cell.GetEntities();
 				for_each(entities.begin(), entities.end(),
 					[&] (AI::Entity& e) ->void {
-						fun(cell, e);
+						fun(&cell, &e);
 				});
 			});
 		}
@@ -89,6 +89,8 @@ namespace Space {
 			return grid->Get(column, row);
 		}
 
+		Grid<Cell> * GetGrid() { return grid; }
+
 	private:
 		double width;
 		double height;
@@ -98,7 +100,7 @@ namespace Space {
 		std::string name;
 
 		std::vector<Cell> cells;
-		Grid<Cell, 5, 5>  * grid;
+		Grid<Cell>  * grid;
 	};
 }
 

@@ -13,6 +13,15 @@ namespace Space {
 				: column(0), row(0), width(0.), height(0.) {}
 			Cell(int column, int row, double width, double height) 
 				: column(column), row(row), width(width), height(height) {}
+			Cell(const Cell& copy) {
+				column = copy.column;
+				row = copy.row;
+				width = copy.width;
+				height = copy.height;
+
+				std::copy(copy.ents.begin(), copy.ents.end(), ents.begin());
+			}
+
 			~Cell() {}
 
 			std::vector<AI::Entity> GetEntities() const { return ents; }
