@@ -12,6 +12,13 @@ namespace Motion {
 				this->maxForce = 0;	 // TODO
 			}
 
+			Kinematic(const Kinematic& copy)  {
+				velocity = new T(*copy.velocity);
+				acceleration = new T(*copy.acceleration);
+
+				maxForce = copy.maxForce;
+			}
+
 			virtual ~Kinematic() {
 				delete velocity;
 				delete acceleration;

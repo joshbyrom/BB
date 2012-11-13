@@ -30,7 +30,8 @@ namespace AI {
 				   public Identity {
 		public:
 			Entity();
-			~Entity();
+			Entity(const Entity& copy);
+			virtual ~Entity();
 			
 			Vector2D GetPosition() const;
 
@@ -85,6 +86,12 @@ namespace AI {
 					   bounds(new Bounds<Vector2D>()), 
 	                   width(0), height(0), updater(NULL) {
 		init();
+	}
+
+	Entity::Entity(const Entity& other) {
+		kinematic = new Kinematic<Vector2D>(*other.kinematic);
+		bounds = new Bounds<Vector2D>(*other.bounds);
+		updater = new Updater(*other.updater);
 	}
 	
 	Entity::~Entity() {

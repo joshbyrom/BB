@@ -19,11 +19,11 @@ namespace Game {
 			double levelWidth = static_cast<double>(WINDOW_WIDTH);
 			double levelHeight = static_cast<double>(WINDOW_HEIGHT);
 
-			//Entity e;
-			//e.GetKinematic().SetPosition(levelWidth * 0.5, levelHeight * 0.5);
+			Entity e;
+			e.GetKinematic().SetPosition(levelWidth * 0.5, levelHeight * 0.5);
 
 			level = new Level("Test Level", levelWidth, levelHeight);
-			//level->AddEntityToLevel(e);
+			level->AddEntityToLevel(e);
 		}
 
 		~Game() {

@@ -16,7 +16,7 @@ namespace AI {
 
 		}
 
-		~Identifiable() {
+		virtual ~Identifiable() {
 
 		}
 

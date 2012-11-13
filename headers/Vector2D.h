@@ -23,6 +23,7 @@ struct Vector2D
 
   Vector2D():x(0.0),y(0.0){}
   Vector2D(double a, double b):x(a),y(b){}
+  Vector2D(const Vector2D& copy) : x(copy.x), y(copy.y) {}
 
   //sets x and y to zero
   void Zero(){x=0.0; y=0.0;}

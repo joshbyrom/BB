@@ -160,7 +160,7 @@ namespace FlowControl {
 		  lastUpdate(other.lastUpdate),
 		  infinite(other.infinite)
 	{
-
+		hooks.insert(other.hooks.begin(), other.hooks.end());
 	}
 
 	Updater::~Updater() {

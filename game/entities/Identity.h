@@ -20,7 +20,7 @@ namespace AI {
 
 			}
 
-			~Identity() {}
+			virtual ~Identity() {}
 		private:
 			std::string name;
 	};
