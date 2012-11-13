@@ -53,14 +53,18 @@ namespace FlowControl {
 			}
 
 			Updater  * WithOnStarted(std::function<void()> onStart) {
-				if(!running) 
+				if(!running) {
+					if(onStarted) delete onStarted;
 					onStarted = new std::function<void()>(onStart);
+				}
 				return this;
 			}
 
 			Updater * WithOnFinished(std::function<void()> onFinish) {
-				if(!running)
+				if(!running) {
+					if(onFinished) delete onFinished;
 					onFinished = new std::function<void()>(onFinish);
+				}
 				return this;
 			}
 
