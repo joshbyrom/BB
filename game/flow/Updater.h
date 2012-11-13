@@ -195,7 +195,7 @@ namespace FlowControl {
 			RemoveFinishedChildren();
 
 			SetNextStartTime(now, delay);
-			repeats--;
+			if(repeats > 0) repeats--;
 		}
 
 		lastUpdate = now;
