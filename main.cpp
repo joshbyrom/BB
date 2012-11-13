@@ -243,10 +243,10 @@ int WINAPI WinMain (HINSTANCE hInstance,
                          g_szWindowClassName,  // window class name
                          g_szApplicationName,  // window caption
                          WS_OVERLAPPED | WS_VISIBLE | WS_CAPTION | WS_SYSMENU,
-                         GetSystemMetrics(SM_CXSCREEN)/2 - constWindowWidth/2,
-                         GetSystemMetrics(SM_CYSCREEN)/2 - constWindowHeight/2,                    
-                         constWindowWidth,     // initial x size
-                         constWindowHeight,    // initial y size
+                         GetSystemMetrics(SM_CXSCREEN)/2 - WINDOW_WIDTH/2,
+                         GetSystemMetrics(SM_CYSCREEN)/2 - WINDOW_HEIGHT/2,                    
+                         WINDOW_WIDTH,     // initial x size
+                         WINDOW_HEIGHT,    // initial y size
                          NULL,                 // parent window handle
                          NULL,                 // window menu handle
                          hInstance,            // program instance handle

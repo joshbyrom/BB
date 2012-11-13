@@ -5,6 +5,7 @@
 #include "../entities/Entity.hpp"
 #include "Grid.hpp"
 #include "Cell.h"
+#include "../../headers/constants.h"
 
 #include <functional>
 #include <algorithm>
@@ -17,7 +18,7 @@ namespace Space {
 	class Level {
 	public:
 		Level(std::string name, double width, double height)
-			: width(width), height(height), grid(new Grid<Cell, 5, 5>()) {
+			: width(width), height(height), grid(new Grid<Cell, GRID_COLUMNS, GRID_ROWS>()) {
 				cellWidth = width / grid->GetNumberOfColumns();
 				cellHeight = height / grid->GetNumberOfRows();
 				grid->Init([&] (int column, int row) -> Cell {
@@ -28,7 +29,7 @@ namespace Space {
 		}
 
 		~Level() {
-
+			delete grid;
 		}
 
 		void AddEntityToLevel(AI::Entity& e) {
@@ -54,9 +55,23 @@ namespace Space {
 			});
 		}
 
+		void Pause() {
+			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
+				e.GetUpdater().Pause();
+			});
+		}
+
+		void Resume() {
+			MapToEntities([&] (Cell& cell, AI::Entity& e) -> void {
+				e.GetUpdater().Resume();
+			});
+		}
+
 		void MapToEntities(std::function<void(Cell& cell, AI::Entity& e)> fun) {
+			std::vector<AI::Entity> entities;
 			for_each(cells.begin(), cells.end(), [&] (Cell& cell) -> void {
-				for_each(cell.GetEntities().begin(), cell.GetEntities().end(),
+				entities = cell.GetEntities();
+				for_each(entities.begin(), entities.end(),
 					[&] (AI::Entity& e) ->void {
 						fun(cell, e);
 				});
